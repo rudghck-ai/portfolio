@@ -4451,27 +4451,7 @@
         </div>
 
         <div class="spec-table-list" id="langSpecList">
-          <div class="spec-row-item">
-            <div class="spec-item-left">
-              <span class="spec-item-name" data-edit="lang1_name">TOEIC (토익)</span>
-              <span class="spec-item-sub" data-edit="lang1_sub">LC 450 / RC 375 · 해외 기술 원문/특허 독해</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span class="spec-item-badge" data-edit="lang1_val">825점</span>
-              <button class="btn-del-spec-item" type="button" onclick="removeSpecRow(this)" title="이 어학 성적 항목 삭제">✕</button>
-            </div>
-          </div>
-
-          <div class="spec-row-item">
-            <div class="spec-item-left">
-              <span class="spec-item-name" data-edit="lang2_name">OPIc (영어 말하기)</span>
-              <span class="spec-item-sub" data-edit="lang2_sub">글로벌 OEM 및 해외 고객사 테크니컬 소통</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span class="spec-item-badge" data-edit="lang2_val">IH (Intermediate High)</span>
-              <button class="btn-del-spec-item" type="button" onclick="removeSpecRow(this)" title="이 어학 성적 항목 삭제">✕</button>
-            </div>
-          </div>
+          <div class="spec-empty-hint" style="padding: 16px; text-align: center; color: var(--muted); font-size: 13px;">등록된 어학 성적이 없습니다. portfolio.md의 [2. 공인 어학 성적]에 내용을 입력하세요.</div>
         </div>
       </div>
 
@@ -4500,49 +4480,7 @@
         </div>
 
         <div class="spec-table-list" id="certSpecList">
-          <div class="spec-row-item">
-            <div class="spec-item-left">
-              <span class="spec-item-name" data-edit="cert1_name">위험물산업기사</span>
-              <span class="spec-item-sub" data-edit="cert1_sub">한국산업인력공단 · 전해액 및 NMP 유기용매 취급 안전</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span class="spec-item-badge" data-edit="cert1_val">취득 (2026.11)</span>
-              <button class="btn-del-spec-item" type="button" onclick="removeSpecRow(this)" title="이 자격증 항목 삭제">✕</button>
-            </div>
-          </div>
-
-          <div class="spec-row-item">
-            <div class="spec-item-left">
-              <span class="spec-item-name" data-edit="cert2_name">컴퓨터활용능력 2급</span>
-              <span class="spec-item-sub" data-edit="cert2_sub">대한상공회의소 · 고급 엑셀 함수 및 대용량 실험 데이터 집계</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span class="spec-item-badge" data-edit="cert2_val">취득 (2026.09)</span>
-              <button class="btn-del-spec-item" type="button" onclick="removeSpecRow(this)" title="이 자격증 항목 삭제">✕</button>
-            </div>
-          </div>
-
-          <div class="spec-row-item">
-            <div class="spec-item-left">
-              <span class="spec-item-name" data-edit="cert3_name">ADsP (데이터분석준전문가)</span>
-              <span class="spec-item-sub" data-edit="cert3_sub">한국데이터산업진흥원 · 배터리 수명 사이클 회귀 통계 분석</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span class="spec-item-badge" data-edit="cert3_val">취득 (2026.08)</span>
-              <button class="btn-del-spec-item" type="button" onclick="removeSpecRow(this)" title="이 자격증 항목 삭제">✕</button>
-            </div>
-          </div>
-
-          <div class="spec-row-item">
-            <div class="spec-item-left">
-              <span class="spec-item-name" data-edit="cert4_name">산업안전기사</span>
-              <span class="spec-item-sub" data-edit="cert4_sub">한국산업인력공단 · 직무 연계성 및 공정/안전 실무 강점</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span class="spec-item-badge" data-edit="cert4_val">취득 (2027.03)</span>
-              <button class="btn-del-spec-item" type="button" onclick="removeSpecRow(this)" title="이 자격증 항목 삭제">✕</button>
-            </div>
-          </div>
+          <div class="spec-empty-hint" style="padding: 16px; text-align: center; color: var(--muted); font-size: 13px;">등록된 자격증이 없습니다. portfolio.md의 [3. 국가기술 자격증]에 내용을 입력하세요.</div>
         </div>
       </div>
     </section>
@@ -4585,61 +4523,8 @@
 
     <!-- 전체 카드 그리드 (기본: 8대 장비 카드 전면 표시) -->
     <section class="battery-tools-grid" id="batteryToolsGrid" style="display: grid; margin-top: 14px;">
-      <div class="b-tool-card card-box">
-        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; width: 100%;">
-          <strong class="tool-name" contenteditable="true" style="outline: none; border-bottom: 1px dashed #CBD5E1; flex: 1;">🔬 아르곤 글로브박스 &amp; 크림퍼</strong>
-          <button class="btn-del-tool-card" type="button" onclick="removeBatteryToolCard(this)" title="이 장비 삭제">✕</button>
-        </div>
-        <span class="tool-desc" contenteditable="true" style="outline: none; margin-top: 8px; display: block; color: #475569; font-size: 12.5px; line-height: 1.5;">H₂O, O₂ &lt; 0.1ppm 제어 하에 CR2032 코인셀 반쪽/완전셀 조립</span>
-      </div>
-      <div class="b-tool-card card-box">
-        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; width: 100%;">
-          <strong class="tool-name" contenteditable="true" style="outline: none; border-bottom: 1px dashed #CBD5E1; flex: 1;">⚡ 배터리 충방전기 (WBCS/Maccor)</strong>
-          <button class="btn-del-tool-card" type="button" onclick="removeBatteryToolCard(this)" title="이 장비 삭제">✕</button>
-        </div>
-        <span class="tool-desc" contenteditable="true" style="outline: none; margin-top: 8px; display: block; color: #475569; font-size: 12.5px; line-height: 1.5;">0.1C~5C 율속 특성, 100~500사이클 수명 평가 프로파일링</span>
-      </div>
-      <div class="b-tool-card card-box">
-        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; width: 100%;">
-          <strong class="tool-name" contenteditable="true" style="outline: none; border-bottom: 1px dashed #CBD5E1; flex: 1;">📊 Potentiostat (EIS / CV)</strong>
-          <button class="btn-del-tool-card" type="button" onclick="removeBatteryToolCard(this)" title="이 장비 삭제">✕</button>
-        </div>
-        <span class="tool-desc" contenteditable="true" style="outline: none; margin-top: 8px; display: block; color: #475569; font-size: 12.5px; line-height: 1.5;">나이퀴스트 선도(EIS)를 통한 전하전달저항(Rct) 및 SEI 저항 규명</span>
-      </div>
-      <div class="b-tool-card card-box">
-        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; width: 100%;">
-          <strong class="tool-name" contenteditable="true" style="outline: none; border-bottom: 1px dashed #CBD5E1; flex: 1;">🧪 닥터블레이드 슬러리 코터</strong>
-          <button class="btn-del-tool-card" type="button" onclick="removeBatteryToolCard(this)" title="이 장비 삭제">✕</button>
-        </div>
-        <span class="tool-desc" contenteditable="true" style="outline: none; margin-top: 8px; display: block; color: #475569; font-size: 12.5px; line-height: 1.5;">알루미늄/구리 집전체 위 슬러리 균일 도포 및 두께 제어</span>
-      </div>
-      <div class="b-tool-card card-box">
-        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; width: 100%;">
-          <strong class="tool-name" contenteditable="true" style="outline: none; border-bottom: 1px dashed #CBD5E1; flex: 1;">📈 OriginPro &amp; Python (데이터)</strong>
-          <button class="btn-del-tool-card" type="button" onclick="removeBatteryToolCard(this)" title="이 장비 삭제">✕</button>
-        </div>
-        <span class="tool-desc" contenteditable="true" style="outline: none; margin-top: 8px; display: block; color: #475569; font-size: 12.5px; line-height: 1.5;">충방전 곡선 및 dQ/dV 미분 용량 피크 자동 추적 분석 스크립트</span>
-      </div>
-      <div class="b-tool-card card-box">
-        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; width: 100%;">
-          <strong class="tool-name" contenteditable="true" style="outline: none; border-bottom: 1px dashed #CBD5E1; flex: 1;">🧮 MS Excel VBA &amp; 매크로</strong>
-          <button class="btn-del-tool-card" type="button" onclick="removeBatteryToolCard(this)" title="이 장비 삭제">✕</button>
-        </div>
-        <span class="tool-desc" contenteditable="true" style="outline: none; margin-top: 8px; display: block; color: #475569; font-size: 12.5px; line-height: 1.5;">수만 행의 배터리 사이클 원시 데이터 정제 및 이상치 필터링</span>
-      </div>
-      <div class="b-tool-card card-box">
-        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; width: 100%;">
-          <strong class="tool-name" contenteditable="true" style="outline: none; border-bottom: 1px dashed #CBD5E1; flex: 1;">📐 SEM / XRD 데이터 분석 기초</strong>
-          <button class="btn-del-tool-card" type="button" onclick="removeBatteryToolCard(this)" title="이 장비 삭제">✕</button>
-        </div>
-        <span class="tool-desc" contenteditable="true" style="outline: none; margin-top: 8px; display: block; color: #475569; font-size: 12.5px; line-height: 1.5;">양극재 결정 구조(XRD) 및 입자 모폴로지(SEM) 분석 리포팅</span>
-      </div>
-      <div class="b-tool-card card-box">
-        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; width: 100%;">
-          <strong class="tool-name" contenteditable="true" style="outline: none; border-bottom: 1px dashed #CBD5E1; flex: 1;">💡 안전 보호구 &amp; MSDS 관리</strong>
-          <button class="btn-del-tool-card" type="button" onclick="removeBatteryToolCard(this)" title="이 장비 삭제">✕</button>
-        </div>
-        <span class="tool-desc" contenteditable="true" style="outline: none; margin-top: 8px; display: block; color: #475569; font-size: 12.5px; line-height: 1.5;">위험물안전관리법 준수, 불산/유기용매 안전 폐액 처리 매뉴얼화</span>
+      <div class="spec-empty-hint" style="grid-column: 1 / -1; padding: 24px; text-align: center; color: var(--muted); font-size: 13.5px; background: rgba(0,0,0,0.02); border-radius: 12px; border: 1px dashed var(--border);">
+        등록된 분석 장비 및 툴이 없습니다. portfolio.md의 [4. 배터리 분석 장비 & 실무 툴 스택]에 내용을 입력하세요.
       </div>
     </section>
 

@@ -101,6 +101,28 @@ def run_git_sync(commit_msg="sync: auto deployment to GitHub Pages"):
         print(f"[GitHub 배포 실행 오류] {e}", file=sys.stderr)
         return False
 
+def watch_portfolio_md():
+    """portfolio.md 파일 수정을 실시간 감지하여 index.html에 자동 반영 및 깃허브 배포"""
+    import time
+    last_mtime = os.path.getmtime(MD_PATH) if os.path.exists(MD_PATH) else 0
+    sync_script = os.path.join(CURRENT_DIR, 'sync_md_to_html.py')
+    while True:
+        time.sleep(2)
+        try:
+            if os.path.exists(MD_PATH):
+                current_mtime = os.path.getmtime(MD_PATH)
+                if current_mtime > last_mtime:
+                    last_mtime = current_mtime
+                    print(f"[파일 감지] portfolio.md 수정 감지 -> index.html 동기화 시작")
+                    res = subprocess.run([sys.executable, sync_script], cwd=CURRENT_DIR, capture_output=True, text=True)
+                    if res.returncode == 0:
+                        print(f"[동기화 성공] portfolio.md 변경사항이 index.html에 반영되었습니다.")
+                        run_git_sync("docs: auto-sync portfolio.md updates to index.html and GitHub Pages")
+                    else:
+                        print(f"[동기화 오류] {res.stderr}")
+        except Exception as e:
+            pass
+
 class IntegratedPortfolioHandler(BaseHTTPRequestHandler):
     def _set_headers(self, status=200, content_type='application/json'):
         self.send_response(status)
@@ -279,6 +301,10 @@ def run_server():
     # Cloudflare Tunnel 백그라운드 스레드 가동
     t = threading.Thread(target=start_cloudflared_tunnel, daemon=True)
     t.start()
+
+    # portfolio.md 파일 수정 자동 감지 및 HTML 동기화 스레드 가동
+    watcher_t = threading.Thread(target=watch_portfolio_md, daemon=True)
+    watcher_t.start()
 
     print("=" * 64)
     print("🚀 배터리 엔지니어 포트폴리오 글로벌 & 로컬 멀티 웹 서버 가동!")
