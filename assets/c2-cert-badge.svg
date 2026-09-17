@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 320" width="100%" height="100%">
+  <defs>
+    <linearGradient id="certBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#EDF2F7"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FDE047"/>
+      <stop offset="50%" stop-color="#EAB308"/>
+      <stop offset="100%" stop-color="#CA8A04"/>
+    </linearGradient>
+    <filter id="certShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="rgba(15,23,42,0.12)"/>
+    </filter>
+  </defs>
+
+  <!-- 배경 카드 -->
+  <rect width="500" height="320" fill="url(#certBg)"/>
+
+  <!-- 메인 인증서 서류 형태 -->
+  <rect x="50" y="30" width="400" height="260" rx="12" fill="#FFFFFF" stroke="#0F172A" stroke-width="6" filter="url(#certShadow)"/>
+  <rect x="66" y="46" width="368" height="228" rx="8" fill="none" stroke="#E2E8F0" stroke-width="2" stroke-dasharray="6 4"/>
+
+  <!-- 상단 골드 메달 & 리본 -->
+  <g transform="translate(250, 105)">
+    <!-- 리본 꼬리 2개 -->
+    <path d="M -30 20 L -45 80 L -25 70 L -5 80 L -15 20" fill="#1B4DF5" stroke="#0F172A" stroke-width="4"/>
+    <path d="M 30 20 L 45 80 L 25 70 L 5 80 L 15 20" fill="#1B4DF5" stroke="#0F172A" stroke-width="4"/>
+    <!-- 메달 원형 -->
+    <circle cx="0" cy="0" r="46" fill="url(#goldGrad)" stroke="#0F172A" stroke-width="5"/>
+    <circle cx="0" cy="0" r="38" fill="none" stroke="#FEF08A" stroke-width="3"/>
+    <!-- 월계수 또는 별 3개 -->
+    <text x="0" y="8" text-anchor="middle" font-size="28">★</text>
+  </g>
+
+  <!-- 인증 타이틀 문구 -->
+  <text x="250" y="210" text-anchor="middle" font-family="'Paperlogy', 'SCDream', sans-serif" font-weight="900" font-size="20" fill="#0F172A" letter-spacing="1">국가공인 및 직무 전문 자격</text>
+  <text x="250" y="235" text-anchor="middle" font-family="'SCDream', sans-serif" font-weight="700" font-size="13" fill="#64748B">VERIFIED CREDENTIALS &amp; CERTIFICATION</text>
+
+  <!-- 스탬프 뱃지 -->
+  <g transform="translate(370, 230) rotate(-12)">
+    <rect x="-45" y="-14" width="90" height="28" rx="6" fill="#EFF6FF" stroke="#1B4DF5" stroke-width="2.5"/>
+    <text x="0" y="4" text-anchor="middle" font-family="sans-serif" font-weight="900" font-size="11" fill="#1B4DF5">QUALIFIED</text>
+  </g>
+</svg>
+

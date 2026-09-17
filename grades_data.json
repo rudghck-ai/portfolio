@@ -1,0 +1,507 @@
+[
+  {
+    "id": "2021-1",
+    "title": "2021년도 1학기",
+    "year": "2021",
+    "term": "1학기",
+    "summary": {
+      "applied": "17.0",
+      "acquired": "16.0",
+      "gpa": "4.28",
+      "percentage": "97.8",
+      "rank": "9/41"
+    },
+    "courses": [
+      {
+        "category": "지교",
+        "code": "COAA80318",
+        "name": "물리학및실험1",
+        "credit": "3",
+        "grade": "B+",
+        "is_core": false
+      },
+      {
+        "category": "지교",
+        "code": "COAA80718",
+        "name": "수학및연습1",
+        "credit": "3",
+        "grade": "A+",
+        "is_core": false
+      },
+      {
+        "category": "지교",
+        "code": "COAA80918",
+        "name": "화학및실험1",
+        "credit": "3",
+        "grade": "A+",
+        "is_core": false
+      },
+      {
+        "category": "기교",
+        "code": "BKSA11087",
+        "name": "사회봉사1",
+        "credit": "1",
+        "grade": "N",
+        "is_core": false
+      },
+      {
+        "category": "기교",
+        "code": "BKSA56558",
+        "name": "컴퓨팅적사고",
+        "credit": "3",
+        "grade": "A+",
+        "is_core": false
+      },
+      {
+        "category": "심교",
+        "code": "BKSA53993",
+        "name": "기술사회의패러다임",
+        "credit": "2",
+        "grade": "A+",
+        "is_core": false
+      },
+      {
+        "category": "지필",
+        "code": "COAA83725",
+        "name": "CSP진로탐색",
+        "credit": "2",
+        "grade": "P",
+        "is_core": false
+      }
+    ]
+  },
+  {
+    "id": "2021-2",
+    "title": "2021년도 2학기",
+    "year": "2021",
+    "term": "2학기",
+    "summary": {
+      "applied": "21.0",
+      "acquired": "21.0",
+      "gpa": "4.16",
+      "percentage": "96.6",
+      "rank": "14/36"
+    },
+    "courses": [
+      {
+        "category": "지교",
+        "code": "BLAA57818",
+        "name": "과학사의이해",
+        "credit": "3",
+        "grade": "A",
+        "is_core": false
+      },
+      {
+        "category": "지교",
+        "code": "COAA80418",
+        "name": "물리학및실험2",
+        "credit": "3",
+        "grade": "B+",
+        "is_core": false
+      },
+      {
+        "category": "지교",
+        "code": "COAA80818",
+        "name": "수학및연습2",
+        "credit": "3",
+        "grade": "A+",
+        "is_core": false
+      },
+      {
+        "category": "지교",
+        "code": "COAA81018",
+        "name": "화학및실험2",
+        "credit": "3",
+        "grade": "A+",
+        "is_core": false
+      },
+      {
+        "category": "기교",
+        "code": "BKSA39797",
+        "name": "창조적사고와표현",
+        "credit": "3",
+        "grade": "A",
+        "is_core": false
+      },
+      {
+        "category": "심교",
+        "code": "BKSA59403",
+        "name": "디지털영상창작",
+        "credit": "2",
+        "grade": "A",
+        "is_core": false
+      },
+      {
+        "category": "심교",
+        "code": "BKSA59392",
+        "name": "소비자마음읽기",
+        "credit": "2",
+        "grade": "A+",
+        "is_core": false
+      },
+      {
+        "category": "심교",
+        "code": "BKSA11195",
+        "name": "알프스지역전설과요들송",
+        "credit": "2",
+        "grade": "A+",
+        "is_core": false
+      }
+    ]
+  },
+  {
+    "id": "2024-1",
+    "title": "2024년도 1학기",
+    "year": "2024",
+    "term": "1학기",
+    "summary": {
+      "applied": "18.0",
+      "acquired": "18.0",
+      "gpa": "3.94",
+      "percentage": "94.4",
+      "rank": "12/43"
+    },
+    "courses": [
+      {
+        "category": "지교",
+        "code": "COAA80118",
+        "name": "공학수학및연습1",
+        "credit": "3",
+        "grade": "B+",
+        "is_core": false
+      },
+      {
+        "category": "전선",
+        "code": "BBQA59284",
+        "name": "물리화학1",
+        "credit": "3",
+        "grade": "A",
+        "is_core": true
+      },
+      {
+        "category": "전선",
+        "code": "BBQA05579",
+        "name": "유기화학1",
+        "credit": "3",
+        "grade": "A+",
+        "is_core": true
+      },
+      {
+        "category": "전선",
+        "code": "BBQA59308",
+        "name": "재료공학",
+        "credit": "3",
+        "grade": "A+",
+        "is_core": true
+      },
+      {
+        "category": "전선",
+        "code": "BBQA59272",
+        "name": "화공양론",
+        "credit": "3",
+        "grade": "B+",
+        "is_core": true
+      },
+      {
+        "category": "기교",
+        "code": "BKSA11087",
+        "name": "사회봉사1",
+        "credit": "1",
+        "grade": "P",
+        "is_core": false
+      },
+      {
+        "category": "심교",
+        "code": "BKSA11071",
+        "name": "발명과특허",
+        "credit": "2",
+        "grade": "B+",
+        "is_core": false
+      }
+    ]
+  },
+  {
+    "id": "2024-2",
+    "title": "2024년도 2학기",
+    "year": "2024",
+    "term": "2학기",
+    "summary": {
+      "applied": "17.0",
+      "acquired": "17.0",
+      "gpa": "4.05",
+      "percentage": "95.5",
+      "rank": "11/42"
+    },
+    "courses": [
+      {
+        "category": "전선",
+        "code": "BBQA05556",
+        "name": "물리화학2",
+        "credit": "3",
+        "grade": "A+",
+        "is_core": true
+      },
+      {
+        "category": "전선",
+        "code": "BLBA63065",
+        "name": "에너지무기소재",
+        "credit": "3",
+        "grade": "A+",
+        "is_core": true
+      },
+      {
+        "category": "전선",
+        "code": "BBQA05580",
+        "name": "유기화학2",
+        "credit": "3",
+        "grade": "B",
+        "is_core": true
+      },
+      {
+        "category": "전선",
+        "code": "BBQA05672",
+        "name": "화공열역학1",
+        "credit": "3",
+        "grade": "A+",
+        "is_core": true
+      },
+      {
+        "category": "전선",
+        "code": "BBQA05675",
+        "name": "화공유체역학",
+        "credit": "3",
+        "grade": "A+",
+        "is_core": true
+      },
+      {
+        "category": "심교",
+        "code": "BKSA63124",
+        "name": "생애주기별영양과운동",
+        "credit": "2",
+        "grade": "B",
+        "is_core": false
+      }
+    ]
+  },
+  {
+    "id": "2025-1",
+    "title": "2025년도 1학기",
+    "year": "2025",
+    "term": "1학기",
+    "summary": {
+      "applied": "17.0",
+      "acquired": "17.0",
+      "gpa": "3.88",
+      "percentage": "93.8",
+      "rank": "14/28"
+    },
+    "courses": [
+      {
+        "category": "전선",
+        "code": "BBCB05559",
+        "name": "반응공학",
+        "credit": "3",
+        "grade": "B+",
+        "is_core": true
+      },
+      {
+        "category": "전선",
+        "code": "BBCB67025",
+        "name": "에너지변환무기소재",
+        "credit": "3",
+        "grade": "A+",
+        "is_core": true
+      },
+      {
+        "category": "전선",
+        "code": "BBCB57637",
+        "name": "이차전지",
+        "credit": "3",
+        "grade": "B+",
+        "is_core": true
+      },
+      {
+        "category": "전선",
+        "code": "BBCB67026",
+        "name": "화공고분자화학",
+        "credit": "3",
+        "grade": "B+",
+        "is_core": true
+      },
+      {
+        "category": "전선",
+        "code": "BBCB05673",
+        "name": "화공열역학2",
+        "credit": "3",
+        "grade": "A",
+        "is_core": true
+      },
+      {
+        "category": "기교",
+        "code": "BKSA11081",
+        "name": "벤처창업및경영",
+        "credit": "2",
+        "grade": "A+",
+        "is_core": false
+      }
+    ]
+  },
+  {
+    "id": "2025-2",
+    "title": "2025년도 2학기",
+    "year": "2025",
+    "term": "2학기",
+    "summary": {
+      "applied": "19.0",
+      "acquired": "19.0",
+      "gpa": "4.18",
+      "percentage": "96.8",
+      "rank": "11/22"
+    },
+    "courses": [
+      {
+        "category": "지교",
+        "code": "BKSA59240",
+        "name": "확률과통계",
+        "credit": "3",
+        "grade": "B+",
+        "is_core": false
+      },
+      {
+        "category": "전선",
+        "code": "BBCB67029",
+        "name": "고체결정화학",
+        "credit": "3",
+        "grade": "A+",
+        "is_core": true
+      },
+      {
+        "category": "전선",
+        "code": "BLBA61070",
+        "name": "에너지공학종합설계",
+        "credit": "3",
+        "grade": "A+",
+        "is_core": true
+      },
+      {
+        "category": "전선",
+        "code": "BBCB57631",
+        "name": "에너지전기화학촉매",
+        "credit": "3",
+        "grade": "A+",
+        "is_core": true
+      },
+      {
+        "category": "기교",
+        "code": "BKSA61327",
+        "name": "프로그래밍을통한문제해결",
+        "credit": "3",
+        "grade": "A+",
+        "is_core": false
+      },
+      {
+        "category": "심교",
+        "code": "BKSA58236",
+        "name": "한국사의새로운이해",
+        "credit": "2",
+        "grade": "B+",
+        "is_core": false
+      },
+      {
+        "category": "심교",
+        "code": "BKSA63040",
+        "name": "현대사회와지속가능경영",
+        "credit": "2",
+        "grade": "A",
+        "is_core": false
+      }
+    ]
+  },
+  {
+    "id": "2026-1",
+    "title": "2026년도 1학기",
+    "year": "2026",
+    "term": "1학기",
+    "summary": {
+      "applied": "18.0",
+      "acquired": "18.0",
+      "gpa": "4.16",
+      "percentage": "96.6",
+      "rank": "9/24"
+    },
+    "courses": [
+      {
+        "category": "지교",
+        "code": "BKSA58274",
+        "name": "컴퓨터프로그래밍",
+        "credit": "3",
+        "grade": "A+",
+        "is_core": false
+      },
+      {
+        "category": "전선",
+        "code": "BBCB67418",
+        "name": "PHOTOCHEMICAL ENGINEERING",
+        "credit": "3",
+        "grade": "A+",
+        "is_core": true
+      },
+      {
+        "category": "전선",
+        "code": "BBCB59022",
+        "name": "에너지전공심화실습2",
+        "credit": "2",
+        "grade": "A+",
+        "is_core": true
+      },
+      {
+        "category": "전선",
+        "code": "BBCB05589",
+        "name": "전기화학",
+        "credit": "3",
+        "grade": "B+",
+        "is_core": true
+      },
+      {
+        "category": "전선",
+        "code": "BBCB67024",
+        "name": "화공분석화학실험",
+        "credit": "2",
+        "grade": "A+",
+        "is_core": true
+      },
+      {
+        "category": "일선",
+        "code": "BKUA60483",
+        "name": "다시찾는조선의역사와인물",
+        "credit": "1",
+        "grade": "P",
+        "is_core": false
+      },
+      {
+        "category": "일선",
+        "code": "BKUA62577",
+        "name": "소비자가바꾸는세상",
+        "credit": "1",
+        "grade": "P",
+        "is_core": false
+      },
+      {
+        "category": "일선",
+        "code": "BKUA62578",
+        "name": "알기쉬운화장품과피부과학이야기",
+        "credit": "1",
+        "grade": "P",
+        "is_core": false
+      },
+      {
+        "category": "심교",
+        "code": "BKSA66034",
+        "name": "기술변화와소비시장의융합:자동차와코스메틱",
+        "credit": "2",
+        "grade": "B+",
+        "is_core": false
+      }
+    ]
+  }
+]

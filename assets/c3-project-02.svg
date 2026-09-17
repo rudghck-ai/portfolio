@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 280" width="100%" height="100%">
+  <defs>
+    <linearGradient id="proj2Bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#E2E8F0"/>
+    </linearGradient>
+    <linearGradient id="tabGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F8FAFC"/>
+    </linearGradient>
+    <filter id="appDrop" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="rgba(15,23,42,0.12)"/>
+    </filter>
+  </defs>
+
+  <rect width="400" height="280" fill="url(#proj2Bg)"/>
+
+  <!-- 메인 태블릿 프레임 -->
+  <rect x="40" y="20" width="320" height="225" rx="14" fill="#1E293B" stroke="#0F172A" stroke-width="5" filter="url(#appDrop)"/>
+  <!-- 스크린 영역 -->
+  <rect x="52" y="32" width="296" height="201" rx="8" fill="url(#tabGrad)"/>
+
+  <!-- 상단 앱 헤더 -->
+  <rect x="52" y="32" width="296" height="32" rx="8" fill="#1B4DF5"/>
+  <circle cx="70" cy="48" r="5" fill="#FFFFFF"/>
+  <rect x="85" y="44" width="80" height="8" rx="4" fill="#FFFFFF"/>
+  <circle cx="325" cy="48" r="6" fill="#93C5FD"/>
+  <circle cx="305" cy="48" r="6" fill="#93C5FD"/>
+
+  <!-- 시스템 아키텍처 및 워크플로우 다이어그램 노드들 -->
+  <!-- 노드 1: Client / User -->
+  <g transform="translate(68, 85)">
+    <rect x="0" y="0" width="70" height="42" rx="6" fill="#EFF6FF" stroke="#3B82F6" stroke-width="2"/>
+    <text x="35" y="18" text-anchor="middle" font-family="sans-serif" font-weight="800" font-size="9" fill="#1E40AF">Client UX</text>
+    <text x="35" y="32" text-anchor="middle" font-family="sans-serif" font-weight="600" font-size="8" fill="#64748B">React · App</text>
+  </g>
+
+  <!-- 화살표 1 -->
+  <path d="M 138 106 L 168 106" stroke="#1B4DF5" stroke-width="2.5" stroke-dasharray="4 2"/>
+  <polygon points="168,106 162,102 162,110" fill="#1B4DF5"/>
+
+  <!-- 노드 2: Core Engine / API -->
+  <g transform="translate(170, 78)">
+    <rect x="0" y="0" width="75" height="56" rx="6" fill="#F0FDF4" stroke="#16A34A" stroke-width="2"/>
+    <text x="37" y="20" text-anchor="middle" font-family="sans-serif" font-weight="900" font-size="9" fill="#15803D">Core Engine</text>
+    <rect x="10" y="26" width="55" height="10" rx="3" fill="#DCFCE7"/>
+    <text x="37" y="34" text-anchor="middle" font-family="sans-serif" font-weight="700" font-size="7" fill="#166534">REST API</text>
+    <text x="37" y="48" text-anchor="middle" font-family="sans-serif" font-weight="600" font-size="7" fill="#64748B">Spring · Node</text>
+  </g>
+
+  <!-- 화살표 2 -->
+  <path d="M 245 106 L 275 106" stroke="#1B4DF5" stroke-width="2.5" stroke-dasharray="4 2"/>
+  <polygon points="275,106 269,102 269,110" fill="#1B4DF5"/>
+
+  <!-- 노드 3: Data / DB -->
+  <g transform="translate(276, 85)">
+    <rect x="0" y="0" width="60" height="42" rx="6" fill="#FEF3C7" stroke="#D97706" stroke-width="2"/>
+    <text x="30" y="18" text-anchor="middle" font-family="sans-serif" font-weight="800" font-size="9" fill="#92400E">Database</text>
+    <text x="30" y="32" text-anchor="middle" font-family="sans-serif" font-weight="600" font-size="8" fill="#B45309">PostgreSQL</text>
+  </g>
+
+  <!-- 하단 UI 결과물 컴포넌트 프리뷰 -->
+  <g transform="translate(68, 150)">
+    <rect x="0" y="0" width="268" height="68" rx="6" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+    <rect x="12" y="12" width="44" height="44" rx="6" fill="#DBEAFE"/>
+    <path d="M 26 34 L 34 42 L 44 26" stroke="#1D4ED8" stroke-width="3" fill="none" stroke-linecap="round"/>
+    
+    <text x="68" y="26" font-family="sans-serif" font-weight="800" font-size="11" fill="#0F172A">사용자 편의 인터페이스 구축</text>
+    <text x="68" y="42" font-family="sans-serif" font-weight="600" font-size="9" fill="#64748B">워크플로우 처리 속도 40% 단축 및 오류율 0% 달성</text>
+    <rect x="68" y="48" width="55" height="12" rx="3" fill="#E2E8F0"/>
+    <text x="95" y="57" text-anchor="middle" font-family="sans-serif" font-weight="700" font-size="7" fill="#475569">PRODUCTION</text>
+  </g>
+</svg>
+

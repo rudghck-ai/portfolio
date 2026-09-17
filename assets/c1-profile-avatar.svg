@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="avatarBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F1F5F9"/>
+      <stop offset="100%" stop-color="#E2E8F0"/>
+    </linearGradient>
+    <linearGradient id="suitGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <filter id="avatarDrop" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="rgba(15,23,42,0.15)"/>
+    </filter>
+  </defs>
+
+  <!-- 원형 배경 프레임 -->
+  <rect width="400" height="400" fill="#F8FAFC"/>
+  <circle cx="200" cy="200" r="170" fill="url(#avatarBg)" stroke="#0F172A" stroke-width="6" filter="url(#avatarDrop)"/>
+
+  <!-- 인물 실루엣 - 머리 & 얼굴 -->
+  <ellipse cx="200" cy="145" rx="55" ry="62" fill="#FDBA74" stroke="#0F172A" stroke-width="5"/>
+  <!-- 헤어 스타일 -->
+  <path d="M 140 145 C 135 90 170 70 200 70 C 230 70 265 90 260 145 C 245 105 220 95 200 95 C 175 95 155 110 140 145 Z" fill="#0F172A"/>
+
+  <!-- 목 -->
+  <rect x="180" y="195" width="40" height="45" rx="4" fill="#FB923C" stroke="#0F172A" stroke-width="4"/>
+
+  <!-- 셔츠 & 타이 칼라 -->
+  <path d="M 160 235 L 240 235 L 225 285 L 200 300 L 175 285 Z" fill="#FFFFFF" stroke="#0F172A" stroke-width="4"/>
+  <polygon points="200,240 208,275 200,320 192,275" fill="#1B4DF5" stroke="#0F172A" stroke-width="3"/>
+
+  <!-- 정장 재킷 어깨선 -->
+  <path d="M 75 370 C 95 285 150 240 180 235 L 200 280 L 220 235 C 250 240 305 285 325 370 Z" fill="url(#suitGrad)" stroke="#0F172A" stroke-width="6"/>
+  <!-- 라펠 선 -->
+  <path d="M 180 235 L 165 315 L 200 370 L 235 315 L 220 235" fill="none" stroke="#334155" stroke-width="4"/>
+
+  <!-- 우하단 인증 뱃지 -->
+  <g transform="translate(290, 290)">
+    <circle cx="0" cy="0" r="34" fill="#1B4DF5" stroke="#0F172A" stroke-width="5"/>
+    <path d="M -12 0 L -4 8 L 14 -10" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- 테두리 클리핑 링 -->
+  <circle cx="200" cy="200" r="170" fill="none" stroke="#0F172A" stroke-width="8"/>
+</svg>
+
