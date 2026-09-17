@@ -3,6 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- 브라우저 및 모바일 기기 실시간 캐시 갱신 (항상 최신본 로드) -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <!-- 검색 엔진(구글, 네이버 등) 검색 결과 노출 원천 차단 -->
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <meta name="googlebot" content="noindex, nofollow">
@@ -4197,7 +4201,7 @@
     <section class="card-box hero-card">
       <div class="avatar-col">
         <div class="avatar-uploader" id="avatarFrame" onclick="triggerAvatarUpload()" title="클릭하여 내 실제 프로필 사진 업로드">
-          <img id="avatarImage" src="assets/c1-profile-avatar.svg" alt="지원자 프로필 사진">
+          <img id="avatarImage" src="assets/profile.jpg?v=20260917" onerror="this.onerror=null; this.src='assets/c1-profile-avatar.svg';" alt="지원자 프로필 사진">
           <div class="upload-overlay">📷 사진 변경 클릭</div>
           <input type="file" id="avatarFileInput" accept="image/*" style="display:none" onchange="handleAvatarFile(event)">
         </div>
@@ -5837,9 +5841,12 @@
       // 프로필 사진 복원 (로컬 저장본이 있으면 표시하고 서버에도 자동 백그라운드 동기화)
       const savedAvatar = localStorage.getItem(AVATAR_KEY);
       if (savedAvatar) {
-        if (savedAvatar.includes('/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJ') || savedAvatar.length === 162691) {
+        if (savedAvatar.includes('/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJ') || 
+            savedAvatar.includes('2wBDAAQEBAQE') || 
+            savedAvatar.length === 162691 || 
+            savedAvatar.length === 162668) {
           localStorage.removeItem(AVATAR_KEY);
-          document.getElementById('avatarImage').src = 'assets/c1-profile-avatar.svg';
+          document.getElementById('avatarImage').src = 'assets/profile.jpg?v=20260917';
         } else {
           document.getElementById('avatarImage').src = savedAvatar;
           fetch('http://127.0.0.1:8765/upload-avatar', {
@@ -5849,6 +5856,8 @@
             mode: 'cors'
           }).catch(() => {});
         }
+      } else {
+        document.getElementById('avatarImage').src = 'assets/profile.jpg?v=20260917';
       }
 
       // 어학 및 자격증 동적 리스트 복원
