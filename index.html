@@ -5571,6 +5571,7 @@
      자바스크립트: 멀티 페이지 전환, 편집 모드, 저장, 이미지 교체
      ══════════════════════════════════════════════════════════ -->
 <script>
+  let SYNC_SERVER_URL = 'http://127.0.0.1:8765';
   let currentPage = 0;
   const totalPages = 3;
   let isEditing = false;
@@ -5734,7 +5735,7 @@
           document.getElementById('avatarImage').src = 'assets/profile.jpg?v=20260917';
         } else {
           document.getElementById('avatarImage').src = savedAvatar;
-          fetch('http://127.0.0.1:8765/upload-avatar', {
+          fetch(`${SYNC_SERVER_URL}/upload-avatar`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ image: savedAvatar }),
@@ -5818,7 +5819,7 @@
 
       // 서버로 영구 업로드하여 assets/profile.jpg로 저장 및 GitHub 자동 푸시 (모바일 즉시 연동)
       try {
-        const res = await fetch('http://127.0.0.1:8765/upload-avatar', {
+        const res = await fetch(`${SYNC_SERVER_URL}/upload-avatar`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ image: result }),
@@ -5847,7 +5848,7 @@
       const savedAvatar = localStorage.getItem(AVATAR_KEY) || '';
       const markdown = (typeof generateMarkdownFromHTML === 'function') ? generateMarkdownFromHTML() : '';
       
-      const res = await fetch('http://127.0.0.1:8765/deploy-to-github', {
+      const res = await fetch(`${SYNC_SERVER_URL}/deploy-to-github`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -7975,8 +7976,24 @@ ${projectsMd}---
 
   // 로컬 동기화 및 웹 서버 상태 확인
   async function checkSyncServerStatus() {
+    // 1. 만약 HTTPS 환경(GitHub Pages 등)이라면 tunnel.json을 우선 조회하여 Cloudflare 보안 터널 주소 획득
+    if (window.location.protocol === 'https:' || (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1')) {
+      try {
+        const tRes = await fetch('tunnel.json?v=' + Date.now(), { cache: 'no-store' });
+        if (tRes.ok) {
+          const tData = await tRes.json();
+          if (tData && tData.tunnel_url) {
+            SYNC_SERVER_URL = tData.tunnel_url;
+            console.log('[실시간 역전송 터널 활성화]', SYNC_SERVER_URL);
+          }
+        }
+      } catch (e) {}
+    } else {
+      SYNC_SERVER_URL = 'http://127.0.0.1:8765';
+    }
+
     try {
-      const res = await fetch('http://127.0.0.1:8765/status', { method: 'GET', mode: 'cors' });
+      const res = await fetch(`${SYNC_SERVER_URL}/status`, { method: 'GET', mode: 'cors' });
       if (res.ok) {
         isSyncServerRunning = true;
         const data = await res.json();
@@ -7997,21 +8014,21 @@ ${projectsMd}---
     updateSyncModalUI();
   }
 
-  // portfolio.md 실시간 저장 실행 함수
+  // portfolio.md 실시간 저장 실행 함수 (모바일/웹 ➜ 맥북 실시간 역전송)
   async function syncToPortfolioMd(silent = false) {
     const markdown = generateMarkdownFromHTML();
 
-    // 1. 서버가 떠있으면 서버로 즉시 저장
+    // 1. 서버(또는 Cloudflare 터널)가 연결되어 있으면 맥북으로 즉시 역전송 저장
     if (isSyncServerRunning) {
       try {
-        const res = await fetch('http://127.0.0.1:8765/save-md', {
+        const res = await fetch(`${SYNC_SERVER_URL}/save-md`, {
           method: 'POST',
           headers: { 'Content-Type': 'text/plain; charset=utf-8' },
           body: markdown,
           mode: 'cors'
         });
         if (res.ok) {
-          if (!silent) showToast('✅ [실시간 서버] portfolio.md 파일이 완벽히 동기화 저장되었습니다!');
+          if (!silent) showToast('✅ [역전송 성공] 맥북 portfolio.md에 실시간 저장 & 깃허브 자동 배포되었습니다!');
           return true;
         }
       } catch (err) {
@@ -8038,6 +8055,69 @@ ${projectsMd}---
       openSyncModal();
     }
     return false;
+  }
+
+  // 3. GitHub REST API 직통 역전송 (맥북이 꺼져 있을 때 스마트폰에서 깃허브로 직접 커밋)
+  async function syncViaGitHubApi() {
+    let token = localStorage.getItem('GH_PAT');
+    if (!token) {
+      token = prompt('GitHub Personal Access Token (PAT)을 입력해주세요:\n(토큰은 사용자 본인의 브라우저에만 안전하게 보관됩니다)');
+      if (!token) return;
+      localStorage.setItem('GH_PAT', token.trim());
+    }
+    token = token.trim();
+
+    showToast('⏳ [GitHub API] 깃허브 저장소로 직통 역전송 중...');
+    const markdown = (typeof generateMarkdownFromHTML === 'function') ? generateMarkdownFromHTML() : '';
+    const owner = 'rudghck-ai';
+    const repo = 'portfolio';
+    const path = 'portfolio.md';
+
+    try {
+      // 1. 기존 파일 sha 가져오기
+      let sha = '';
+      const getRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
+        headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github.v3+json' }
+      });
+      if (getRes.ok) {
+        const fileData = await getRes.json();
+        sha = fileData.sha;
+      }
+
+      // 2. Base64 UTF-8 인코딩
+      const utf8Bytes = new TextEncoder().encode(markdown);
+      let binaryStr = '';
+      for (let i = 0; i < utf8Bytes.length; i++) binaryStr += String.fromCharCode(utf8Bytes[i]);
+      const b64Content = btoa(binaryStr);
+
+      // 3. GitHub 직접 커밋
+      const putRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Accept': 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          message: 'docs: mobile direct commit via GitHub REST API',
+          content: b64Content,
+          sha: sha || undefined
+        })
+      });
+
+      if (putRes.ok) {
+        showToast('🎉 [역전송 성공] 깃허브 저장소에 직접 커밋되었습니다! 30초 내 모바일 링크가 갱신됩니다.');
+        return true;
+      } else {
+        const err = await putRes.json();
+        alert('GitHub API 전송 실패: ' + (err.message || '토큰 권한을 확인하세요.'));
+        localStorage.removeItem('GH_PAT');
+        return false;
+      }
+    } catch (err) {
+      alert('GitHub API 통신 오류: ' + err.message);
+      return false;
+    }
   }
 
   // File System Access API로 로컬 파일 연결
@@ -8653,6 +8733,15 @@ ${projectsMd}---
           <p>연결된 파일 또는 로컬 동기화 서버로 현재 텍스트를 즉시 전송하여 덮어씁니다.</p>
         </div>
         <span style="font-size: 18px; color: var(--navy);">💾</span>
+      </button>
+
+      <!-- 방법 4: 깃허브 API 직접 역전송 (맥북이 꺼져 있어도 모바일에서 직통 커밋) -->
+      <button class="sync-action-btn" type="button" onclick="syncViaGitHubApi()" style="border-color: #8B5CF6; background: rgba(139, 92, 246, 0.04);">
+        <div class="sync-action-info">
+          <h4 style="color: #7C3AED;">🚀 모바일 ➜ 깃허브 직통 역전송 (GitHub PAT)</h4>
+          <p>맥북이 꺼져 있어도 스마트폰에서 수정한 내용을 GitHub 저장소로 직접 커밋·배포합니다.</p>
+        </div>
+        <span style="font-size: 18px; color: #7C3AED;">☁️</span>
       </button>
     </div>
 

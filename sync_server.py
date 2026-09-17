@@ -77,6 +77,13 @@ def start_cloudflared_tunnel():
                 print(f"🎉 [전세계 공개 HTTPS 접속 링크 발급 완료!]")
                 print(f"🔗 외부 접속 URL (LTE/5G/어디서나): {PUBLIC_URL}")
                 print("=" * 64)
+                try:
+                    tunnel_file = os.path.join(CURRENT_DIR, 'tunnel.json')
+                    with open(tunnel_file, 'w', encoding='utf-8') as f:
+                        json.dump({"tunnel_url": PUBLIC_URL, "status": "active"}, f, indent=2)
+                    threading.Thread(target=run_git_sync, args=("chore: update cloudflare tunnel url for mobile reverse-sync",)).start()
+                except Exception as ex:
+                    print(f"[tunnel.json 갱신 오류] {ex}")
     except Exception as e:
         print(f"[터널 오류] {e}", file=sys.stderr)
 
@@ -121,6 +128,25 @@ def watch_portfolio_md():
                     else:
                         print(f"[동기화 오류] {res.stderr}")
         except Exception as e:
+            pass
+
+def auto_pull_worker():
+    """모바일이나 GitHub API를 통해 원격에 커밋된 최신 변경사항을 맥북 로컬 파일로 자동 pull 동기화"""
+    import time
+    sync_script = os.path.join(CURRENT_DIR, 'sync_md_to_html.py')
+    while True:
+        time.sleep(30)
+        try:
+            subprocess.run(['git', 'fetch', 'origin', 'main'], cwd=CURRENT_DIR, capture_output=True)
+            res = subprocess.run(['git', 'rev-list', 'HEAD..origin/main', '--count'], cwd=CURRENT_DIR, capture_output=True, text=True)
+            behind_count = int(res.stdout.strip() or '0')
+            if behind_count > 0:
+                print(f"[원격 역전송 감지] 원격 저장소에 신규 커밋 {behind_count}개 발견 -> 맥북으로 git pull 실행")
+                pull_res = subprocess.run(['git', 'pull', 'origin', 'main'], cwd=CURRENT_DIR, capture_output=True, text=True)
+                if pull_res.returncode == 0:
+                    print(f"✅ [맥북 역전송 완료] 모바일/원격 수정본이 맥북 파일로 완벽히 동기화되었습니다.")
+                    subprocess.run([sys.executable, sync_script], cwd=CURRENT_DIR, capture_output=True)
+        except Exception:
             pass
 
 class IntegratedPortfolioHandler(BaseHTTPRequestHandler):
@@ -305,6 +331,10 @@ def run_server():
     # portfolio.md 파일 수정 자동 감지 및 HTML 동기화 스레드 가동
     watcher_t = threading.Thread(target=watch_portfolio_md, daemon=True)
     watcher_t.start()
+
+    # 모바일/원격 신규 커밋 맥북 자동 pull 스레드 가동
+    pull_t = threading.Thread(target=auto_pull_worker, daemon=True)
+    pull_t.start()
 
     print("=" * 64)
     print("🚀 배터리 엔지니어 포트폴리오 글로벌 & 로컬 멀티 웹 서버 가동!")
