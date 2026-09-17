@@ -1,4 +1,5 @@
 .DS_Store
 bin/
 __pycache__/
-
+font/archive/
+font/source/
