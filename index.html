@@ -4196,8 +4196,8 @@
     <!-- Hero Card -->
     <section class="card-box hero-card">
       <div class="avatar-col">
-        <div class="avatar-uploader" id="avatarFrame" onclick="triggerAvatarUpload()" title="클릭하여 프로필 사진 변경">
-          <img id="avatarImage" src="assets/profile.jpg" onerror="if(!this._triedRaw){this._triedRaw=true; this.src='https://raw.githubusercontent.com/rudghck-ai/portfolio/main/assets/profile.jpg';}else{this.onerror=null; this.src='assets/c1-profile-avatar.svg';}" alt="지원자 프로필 사진">
+        <div class="avatar-uploader" id="avatarFrame" onclick="triggerAvatarUpload()" title="클릭하여 내 실제 프로필 사진 업로드">
+          <img id="avatarImage" src="assets/c1-profile-avatar.svg" alt="지원자 프로필 사진">
           <div class="upload-overlay">📷 사진 변경 클릭</div>
           <input type="file" id="avatarFileInput" accept="image/*" style="display:none" onchange="handleAvatarFile(event)">
         </div>
@@ -5837,13 +5837,18 @@
       // 프로필 사진 복원 (로컬 저장본이 있으면 표시하고 서버에도 자동 백그라운드 동기화)
       const savedAvatar = localStorage.getItem(AVATAR_KEY);
       if (savedAvatar) {
-        document.getElementById('avatarImage').src = savedAvatar;
-        fetch('http://127.0.0.1:8765/upload-avatar', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ image: savedAvatar }),
-          mode: 'cors'
-        }).catch(() => {});
+        if (savedAvatar.includes('/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJ') || savedAvatar.length === 162691) {
+          localStorage.removeItem(AVATAR_KEY);
+          document.getElementById('avatarImage').src = 'assets/c1-profile-avatar.svg';
+        } else {
+          document.getElementById('avatarImage').src = savedAvatar;
+          fetch('http://127.0.0.1:8765/upload-avatar', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ image: savedAvatar }),
+            mode: 'cors'
+          }).catch(() => {});
+        }
       }
 
       // 어학 및 자격증 동적 리스트 복원
