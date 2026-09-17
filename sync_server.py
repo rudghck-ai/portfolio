@@ -80,6 +80,27 @@ def start_cloudflared_tunnel():
     except Exception as e:
         print(f"[터널 오류] {e}", file=sys.stderr)
 
+def run_git_sync(commit_msg="sync: auto deployment to GitHub Pages"):
+    """로컬 변경사항(사진, portfolio.md, HTML 등)을 GitHub Pages로 즉시 커밋 & 푸시"""
+    try:
+        subprocess.run(['git', 'add', '-A'], cwd=CURRENT_DIR, check=True)
+        diff = subprocess.run(['git', 'diff', '--cached', '--quiet'], cwd=CURRENT_DIR)
+        if diff.returncode != 0:
+            subprocess.run(['git', 'commit', '-m', commit_msg], cwd=CURRENT_DIR, check=True)
+            res = subprocess.run(['git', 'push', 'origin', 'main'], cwd=CURRENT_DIR, text=True, capture_output=True)
+            if res.returncode == 0:
+                print(f"🚀 [GitHub 자동 배포 성공] {commit_msg}")
+                return True
+            else:
+                print(f"[GitHub 푸시 실패] {res.stderr}", file=sys.stderr)
+                return False
+        else:
+            print("[GitHub 동기화] 최신 커밋과 변경 사항이 없습니다 (이미 최신 반영됨).")
+            return True
+    except Exception as e:
+        print(f"[GitHub 배포 실행 오류] {e}", file=sys.stderr)
+        return False
+
 class IntegratedPortfolioHandler(BaseHTTPRequestHandler):
     def _set_headers(self, status=200, content_type='application/json'):
         self.send_response(status)
@@ -169,6 +190,7 @@ class IntegratedPortfolioHandler(BaseHTTPRequestHandler):
                     f.write(post_data)
                 
                 print(f"[동기화 성공] portfolio.md 업데이트 완료 ({len(post_data):,} bytes)")
+                threading.Thread(target=run_git_sync, args=("docs: update portfolio.md via web sync",)).start()
                 self._set_headers(200, 'application/json; charset=utf-8')
                 self.wfile.write(b'{"success": true, "message": "portfolio.md updated successfully"}')
             except Exception as e:
@@ -191,10 +213,45 @@ class IntegratedPortfolioHandler(BaseHTTPRequestHandler):
                     f.write(img_bytes)
                 
                 print(f"[사진 동기화 성공] assets/profile.jpg 저장 완료 ({len(img_bytes):,} bytes)")
+                # 깃허브 자동 푸시 스레드 실행
+                threading.Thread(target=run_git_sync, args=("feat: update profile photo via web upload",)).start()
                 self._set_headers(200, 'application/json; charset=utf-8')
                 self.wfile.write(json.dumps({"success": True, "url": "assets/profile.jpg"}).encode('utf-8'))
             except Exception as e:
                 print(f"[사진 업로드 오류] {e}", file=sys.stderr)
+                self._set_headers(500, 'application/json; charset=utf-8')
+                self.wfile.write(json.dumps({"success": False, "error": str(e)}).encode('utf-8'))
+        elif path == '/deploy-to-github':
+            content_length = int(self.headers.get('Content-Length', 0))
+            raw_data = self.rfile.read(content_length)
+            try:
+                payload = json.loads(raw_data.decode('utf-8'))
+                img_data = payload.get('avatar', '')
+                if img_data:
+                    import base64
+                    if ',' in img_data:
+                        img_data = img_data.split(',', 1)[1]
+                    img_bytes = base64.b64decode(img_data)
+                    avatar_path = os.path.join(CURRENT_DIR, 'assets', 'profile.jpg')
+                    with open(avatar_path, 'wb') as f:
+                        f.write(img_bytes)
+                    print(f"[배포] 프로필 사진 저장 완료 ({len(img_bytes):,} bytes)")
+
+                md_data = payload.get('markdown', '')
+                if md_data:
+                    with open(MD_PATH, 'w', encoding='utf-8') as f:
+                        f.write(md_data)
+                    print(f"[배포] portfolio.md 갱신 완료 ({len(md_data):,} bytes)")
+
+                # 동기식 또는 비동기식 깃 푸시 실행
+                success = run_git_sync("sync: manual one-click deployment to GitHub Pages")
+                self._set_headers(200, 'application/json; charset=utf-8')
+                self.wfile.write(json.dumps({
+                    "success": success,
+                    "message": "깃허브(GitHub Pages)에 최신 사진과 스펙이 성공적으로 배포되었습니다!"
+                }).encode('utf-8'))
+            except Exception as e:
+                print(f"[배포 오류] {e}", file=sys.stderr)
                 self._set_headers(500, 'application/json; charset=utf-8')
                 self.wfile.write(json.dumps({"success": False, "error": str(e)}).encode('utf-8'))
         else:

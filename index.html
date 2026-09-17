@@ -216,6 +216,17 @@
   .btn-print:hover {
     background: #1E293B;
   }
+  .btn-deploy-github {
+    background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+    color: #FFFFFF;
+    border: 1px solid #0284C7;
+    box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
+  }
+  .btn-deploy-github:hover {
+    background: linear-gradient(135deg, #0369A1 0%, #075985 100%);
+    box-shadow: 0 4px 10px rgba(2, 132, 199, 0.35);
+    transform: translateY(-1px);
+  }
 
   /* ══════════════════════════════════════════════════════════
      2. 페이지 컨테이너 및 전환 애니메이션 (Multi-page views)
@@ -4154,6 +4165,11 @@
         <span class="sync-dot" id="syncStatusDot"></span>
         <span id="syncBtnLabel">MD 동기화</span>
       </button>
+      <!-- 깃허브 실시간 배포 버튼 -->
+      <button id="btnDeployGithub" class="btn-top-action btn-deploy-github" type="button" onclick="deployToGithub()" title="내 사진과 수정된 스펙을 깃허브 링크(모바일)에 즉시 전송 및 배포">
+        <span>🚀</span>
+        <span id="deployBtnLabel">깃허브 배포</span>
+      </button>
       <button id="btnToggleEdit" class="btn-top-action btn-edit-toggle" onclick="toggleEditMode()">
         ✏️ 실시간 편집 모드
       </button>
@@ -4181,7 +4197,7 @@
     <section class="card-box hero-card">
       <div class="avatar-col">
         <div class="avatar-uploader" id="avatarFrame" onclick="triggerAvatarUpload()" title="클릭하여 프로필 사진 변경">
-          <img id="avatarImage" src="assets/profile.jpg" onerror="this.onerror=null; this.src='assets/c1-profile-avatar.svg';" alt="지원자 프로필 사진">
+          <img id="avatarImage" src="assets/profile.jpg" onerror="if(!this._triedRaw){this._triedRaw=true; this.src='https://raw.githubusercontent.com/rudghck-ai/portfolio/main/assets/profile.jpg';}else{this.onerror=null; this.src='assets/c1-profile-avatar.svg';}" alt="지원자 프로필 사진">
           <div class="upload-overlay">📷 사진 변경 클릭</div>
           <input type="file" id="avatarFileInput" accept="image/*" style="display:none" onchange="handleAvatarFile(event)">
         </div>
@@ -4544,15 +4560,15 @@
         <button class="btn-spec-action-ghost" type="button" onclick="clearBatteryTools()" title="장비 목록 비우기">
           🧹 전체 비우기
         </button>
-        <button id="btnToggleBatteryTools" class="btn-collapse-toggle" type="button" onclick="toggleBatteryToolsSection()" title="장비 및 툴 스택 전체 보기">
-          <span id="toolsToggleIcon">📂</span>
-          <span id="toolsToggleText">장비/툴 스택 전체 보기 (펼치기 ▼)</span>
+        <button id="btnToggleBatteryTools" class="btn-collapse-toggle active" type="button" onclick="toggleBatteryToolsSection()" title="장비 및 툴 스택 접기/펼치기">
+          <span id="toolsToggleIcon">▲</span>
+          <span id="toolsToggleText">장비/툴 스택 접기 (최소화)</span>
         </button>
       </div>
     </div>
 
     <!-- 최소화 상태 간결한 요약 칩 바 (동적 갱신) -->
-    <div class="tools-collapsed-preview" id="toolsCollapsedPreview">
+    <div class="tools-collapsed-preview" id="toolsCollapsedPreview" style="display: none;">
       <span class="preview-mini-chip">🔬 아르곤 글로브박스 &amp; 크림퍼</span>
       <span class="preview-mini-chip">⚡ 배터리 충방전기 (WBCS/Maccor)</span>
       <span class="preview-mini-chip">📊 Potentiostat (EIS / CV)</span>
@@ -4563,8 +4579,8 @@
       <span class="preview-mini-chip">💡 안전 보호구 &amp; MSDS 관리</span>
     </div>
 
-    <!-- 전체 카드 그리드 (기본: 최소화/숨김, 8대 장비 탑재 상태) -->
-    <section class="battery-tools-grid" id="batteryToolsGrid" style="display: none; margin-top: 14px;">
+    <!-- 전체 카드 그리드 (기본: 8대 장비 카드 전면 표시) -->
+    <section class="battery-tools-grid" id="batteryToolsGrid" style="display: grid; margin-top: 14px;">
       <div class="b-tool-card card-box">
         <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; width: 100%;">
           <strong class="tool-name" contenteditable="true" style="outline: none; border-bottom: 1px dashed #CBD5E1; flex: 1;">🔬 아르곤 글로브박스 &amp; 크림퍼</strong>
@@ -5490,21 +5506,21 @@
         <span style="font-size: 12px; color: var(--muted); margin-left: 6px;" id="projectsCountLabel">등록된 프로젝트: 3개</span>
       </div>
 
-      <button id="btnToggleProjects" class="btn-collapse-toggle primary" type="button" onclick="toggleProjectsSection()" title="프로젝트 전체 보기">
-        <span id="projectsToggleIcon">📂</span>
-        <span id="projectsToggleText">프로젝트 전체 보기 (펼치기 ▼)</span>
+      <button id="btnToggleProjects" class="btn-collapse-toggle" type="button" onclick="toggleProjectsSection()" title="프로젝트 접기/펼치기">
+        <span id="projectsToggleIcon">📁</span>
+        <span id="projectsToggleText">프로젝트 목록 접기 (▲)</span>
       </button>
     </div>
 
     <!-- 프로젝트 최소화 상태일 때 보여주는 컴팩트 요약 바 -->
-    <div class="projects-collapsed-preview" id="projectsCollapsedPreview">
+    <div class="projects-collapsed-preview" id="projectsCollapsedPreview" style="display: none;">
       <span class="preview-mini-chip" style="background:#E0F2FE; color:#0369A1; font-weight:700;">🔋 CR2032 NCM622 코인셀 제작 및 수명·EIS 분석</span>
       <span class="preview-mini-chip" style="background:#E0F2FE; color:#0369A1; font-weight:700;">⚡ 닥터블레이드 슬러리 코팅 결함 저감 &amp; 건조 프로파일</span>
       <span class="preview-mini-chip" style="background:#E0F2FE; color:#0369A1; font-weight:700;">📊 Python 배터리 데이터 파싱 &amp; dQ/dV 분석 툴</span>
     </div>
 
-    <!-- 프로젝트 상세 카드 리스트 (동적 관리) -->
-    <div class="projects-list" id="projectsList" style="display: none;">
+    <!-- 프로젝트 상세 카드 리스트 (기본: 3대 핵심 프로젝트 전면 표시) -->
+    <div class="projects-list" id="projectsList" style="display: flex; flex-direction: column; gap: 20px;">
       <article class="proj-card card-box" data-project-id="proj_sample_1">
         <div class="proj-visual" style="background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:24px; text-align:center; color:#FFFFFF;">
           <div style="width: 56px; height: 56px; border-radius: 50%; background: rgba(16, 185, 129, 0.2); border: 2px solid #10B981; display:flex; align-items:center; justify-content:center; font-size: 26px; margin-bottom: 10px;">
@@ -5798,6 +5814,7 @@
       localStorage.setItem(REGISTERED_SPECS_KEY, JSON.stringify(registeredUserSpecs));
       showToast('모든 수정 내용이 브라우저에 자동 저장되었습니다.');
       syncToPortfolioMd(true);
+      deployToGithub(true);
     } catch (err) {
       console.warn('저장 실패:', err);
     }
@@ -5821,10 +5838,11 @@
       const savedAvatar = localStorage.getItem(AVATAR_KEY);
       if (savedAvatar) {
         document.getElementById('avatarImage').src = savedAvatar;
-        fetch('/upload-avatar', {
+        fetch('http://127.0.0.1:8765/upload-avatar', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ image: savedAvatar })
+          body: JSON.stringify({ image: savedAvatar }),
+          mode: 'cors'
         }).catch(() => {});
       }
 
@@ -5899,23 +5917,62 @@
         localStorage.setItem(AVATAR_KEY, result);
       } catch (err) {}
 
-      // 서버로 영구 업로드하여 assets/profile.jpg로 저장 (모바일 및 모든 기기 즉시 연동)
+      // 서버로 영구 업로드하여 assets/profile.jpg로 저장 및 GitHub 자동 푸시 (모바일 즉시 연동)
       try {
-        const res = await fetch('/upload-avatar', {
+        const res = await fetch('http://127.0.0.1:8765/upload-avatar', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ image: result })
+          body: JSON.stringify({ image: result }),
+          mode: 'cors'
         });
         if (res.ok) {
-          showToast('✅ 프로필 사진이 서버에 영구 저장되어 모든 기기(모바일)에 실시간 연동되었습니다!');
+          showToast('✅ 프로필 사진이 서버에 영구 저장되고 깃허브에 자동 배포되었습니다!');
         } else {
-          showToast('프로필 사진이 저장되었습니다.');
+          showToast('프로필 사진이 로컬에 저장되었습니다.');
         }
       } catch (err) {
         showToast('프로필 사진이 브라우저에 저장되었습니다.');
       }
     };
     reader.readAsDataURL(file);
+  }
+
+  // 깃허브(GitHub Pages) 실시간 원스톱 배포 함수
+  async function deployToGithub(silent = false) {
+    const deployBtn = document.getElementById('btnDeployGithub');
+    const deployLabel = document.getElementById('deployBtnLabel');
+    if (deployLabel) deployLabel.textContent = '배포 중...';
+    if (deployBtn) deployBtn.disabled = true;
+
+    try {
+      const savedAvatar = localStorage.getItem(AVATAR_KEY) || '';
+      const markdown = (typeof generateMarkdownFromHTML === 'function') ? generateMarkdownFromHTML() : '';
+      
+      const res = await fetch('http://127.0.0.1:8765/deploy-to-github', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          avatar: savedAvatar,
+          markdown: markdown
+        }),
+        mode: 'cors'
+      });
+
+      if (res.ok) {
+        if (!silent) {
+          showToast('🚀 깃허브(GitHub Pages) 배포 완료! 모바일 링크에서도 즉시 최신 사진과 스펙이 적용됩니다.');
+        }
+      } else {
+        if (!silent) showToast('배포 서버 응답 대기 중...');
+      }
+    } catch (err) {
+      if (!silent) {
+        showToast('로컬 동기화 서버(8765) 연결을 확인해주세요.');
+      }
+    } finally {
+      if (deployLabel) deployLabel.textContent = '깃허브 배포';
+      if (deployBtn) deployBtn.disabled = false;
+    }
   }
 
   // 이메일 클립보드 복사
@@ -8374,7 +8431,7 @@ ${projectsMd}---
   // ══════════════════════════════════════════════════════════
   // 섹션 최소화/펼침 토글 및 스펙 가이드 동적 로드 로직
   // ══════════════════════════════════════════════════════════
-  let isBatteryToolsExpanded = false;
+  let isBatteryToolsExpanded = true;
   function toggleBatteryToolsSection() {
     isBatteryToolsExpanded = !isBatteryToolsExpanded;
     const grid = document.getElementById('batteryToolsGrid');
