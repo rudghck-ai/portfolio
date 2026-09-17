@@ -3996,7 +3996,7 @@
     <section class="card-box hero-card">
       <div class="avatar-col">
         <div class="avatar-uploader" id="avatarFrame" onclick="triggerAvatarUpload()" title="클릭하여 프로필 사진 변경">
-          <img id="avatarImage" src="assets/c1-profile-avatar.svg" alt="지원자 프로필 사진">
+          <img id="avatarImage" src="assets/profile.jpg" onerror="this.onerror=null; this.src='assets/c1-profile-avatar.svg';" alt="지원자 프로필 사진">
           <div class="upload-overlay">📷 사진 변경 클릭</div>
           <input type="file" id="avatarFileInput" accept="image/*" style="display:none" onchange="handleAvatarFile(event)">
         </div>
@@ -5467,10 +5467,15 @@
         });
       }
 
-      // 프로필 사진 복원
+      // 프로필 사진 복원 (로컬 저장본이 있으면 표시하고 서버에도 자동 백그라운드 동기화)
       const savedAvatar = localStorage.getItem(AVATAR_KEY);
       if (savedAvatar) {
         document.getElementById('avatarImage').src = savedAvatar;
+        fetch('/upload-avatar', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ image: savedAvatar })
+        }).catch(() => {});
       }
 
       // 어학 및 자격증 동적 리스트 복원
@@ -5530,14 +5535,27 @@
     if (!file) return;
 
     const reader = new FileReader();
-    reader.onload = function(e) {
+    reader.onload = async function(e) {
       const result = e.target.result;
       document.getElementById('avatarImage').src = result;
       try {
         localStorage.setItem(AVATAR_KEY, result);
-        showToast('프로필 사진이 저장되었습니다.');
+      } catch (err) {}
+
+      // 서버로 영구 업로드하여 assets/profile.jpg로 저장 (모바일 및 모든 기기 즉시 연동)
+      try {
+        const res = await fetch('/upload-avatar', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ image: result })
+        });
+        if (res.ok) {
+          showToast('✅ 프로필 사진이 서버에 영구 저장되어 모든 기기(모바일)에 실시간 연동되었습니다!');
+        } else {
+          showToast('프로필 사진이 저장되었습니다.');
+        }
       } catch (err) {
-        console.warn('사진 저장 실패:', err);
+        showToast('프로필 사진이 브라우저에 저장되었습니다.');
       }
     };
     reader.readAsDataURL(file);

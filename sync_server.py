@@ -175,6 +175,28 @@ class IntegratedPortfolioHandler(BaseHTTPRequestHandler):
                 print(f"[동기화 오류] {e}", file=sys.stderr)
                 self._set_headers(500, 'application/json; charset=utf-8')
                 self.wfile.write(json.dumps({"success": False, "error": str(e)}).encode('utf-8'))
+        elif path == '/upload-avatar':
+            content_length = int(self.headers.get('Content-Length', 0))
+            raw_data = self.rfile.read(content_length)
+            try:
+                import base64
+                payload = json.loads(raw_data.decode('utf-8'))
+                img_data = payload.get('image', '')
+                if ',' in img_data:
+                    img_data = img_data.split(',', 1)[1]
+                img_bytes = base64.b64decode(img_data)
+                
+                avatar_path = os.path.join(CURRENT_DIR, 'assets', 'profile.jpg')
+                with open(avatar_path, 'wb') as f:
+                    f.write(img_bytes)
+                
+                print(f"[사진 동기화 성공] assets/profile.jpg 저장 완료 ({len(img_bytes):,} bytes)")
+                self._set_headers(200, 'application/json; charset=utf-8')
+                self.wfile.write(json.dumps({"success": True, "url": "assets/profile.jpg"}).encode('utf-8'))
+            except Exception as e:
+                print(f"[사진 업로드 오류] {e}", file=sys.stderr)
+                self._set_headers(500, 'application/json; charset=utf-8')
+                self.wfile.write(json.dumps({"success": False, "error": str(e)}).encode('utf-8'))
         else:
             self._send_error_page(404, "Endpoint Not Found")
 
