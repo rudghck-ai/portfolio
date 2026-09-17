@@ -2200,6 +2200,10 @@
     .matcher-cards-grid {
       grid-template-columns: 1fr;
     }
+    .company-roadmap-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
   }
   @media print {
     .grades-modal-overlay {
@@ -3107,7 +3111,7 @@
   body.dark-mode .company-target-role {
     background: #1E293B !important;
     border-color: #334155 !important;
-    color: #94A3B8 !important;
+    color: #E2E8F0 !important;
   }
   body.dark-mode .company-tech-pill {
     background: #1E293B !important;
@@ -3115,10 +3119,10 @@
   }
   body.dark-mode .company-fit-points {
     border-top-color: #263345 !important;
-    color: #64748B !important;
+    color: #CBD5E1 !important;
   }
   body.dark-mode .company-fit-points strong {
-    color: #CBD5E1 !important;
+    color: #FFFFFF !important;
   }
 
   body.dark-mode .btn-top-action {
@@ -3878,12 +3882,165 @@
       text-align: center;
       padding: 24px 16px;
     }
+
+    /* ═══ 기업별 타깃 직무 매핑 모바일 최적화 (따닥따닥 붙는 현상 완벽 해결) ═══ */
+    .company-roadmap-grid {
+      grid-template-columns: 1fr !important;
+      gap: 16px !important;
+      margin-bottom: 24px !important;
+    }
+    .company-card {
+      padding: 18px 16px !important;
+      border-radius: 14px !important;
+    }
+    .company-header {
+      flex-wrap: wrap !important;
+      gap: 6px !important;
+    }
+    .company-name {
+      font-size: 15px !important;
+    }
+    .company-target-role {
+      font-size: 12.5px !important;
+      padding: 8px 12px !important;
+      line-height: 1.5 !important;
+      word-break: keep-all !important;
+      margin: 4px 0 !important;
+    }
+    .company-tech-pills {
+      gap: 6px !important;
+      margin: 4px 0 !important;
+    }
+    .company-tech-pill {
+      font-size: 11.5px !important;
+      padding: 3px 9px !important;
+    }
+    .company-fit-points {
+      font-size: 12.5px !important;
+      line-height: 1.65 !important;
+      gap: 6px !important;
+    }
+    .company-fit-points div {
+      word-break: keep-all !important;
+    }
+
+    /* ═══ 버튼 칸 밖 탈출 방지 & 모바일 UI 최적화 ═══ */
+    .btn-collapse-toggle {
+      width: 100% !important;
+      justify-content: center !important;
+      box-sizing: border-box !important;
+      max-width: 100% !important;
+      font-size: 12px !important;
+      padding: 10px 12px !important;
+      margin-top: 6px !important;
+      text-align: center !important;
+      word-break: keep-all !important;
+    }
+    .matcher-toggle-bar {
+      flex-direction: column !important;
+      align-items: stretch !important;
+      gap: 10px !important;
+      padding: 14px 16px !important;
+      box-sizing: border-box !important;
+      width: 100% !important;
+    }
+    .btn-matcher-arrow {
+      width: 100% !important;
+      justify-content: center !important;
+      box-sizing: border-box !important;
+      max-width: 100% !important;
+      padding: 10px 14px !important;
+      font-size: 12.5px !important;
+      margin-top: 4px !important;
+    }
+    .company-filter-banner {
+      flex-direction: column !important;
+      align-items: stretch !important;
+      padding: 16px 14px !important;
+      gap: 12px !important;
+      box-sizing: border-box !important;
+      margin-bottom: 20px !important;
+    }
+    .company-filter-buttons {
+      width: 100% !important;
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: 6px !important;
+    }
+    .btn-company-filter {
+      flex: 1 1 calc(50% - 6px) !important;
+      justify-content: center !important;
+      padding: 8px 6px !important;
+      font-size: 11.5px !important;
+      box-sizing: border-box !important;
+      text-align: center !important;
+    }
+    .live-input-header {
+      flex-direction: column !important;
+      align-items: stretch !important;
+      gap: 8px !important;
+    }
+    .live-input-header > div {
+      flex-wrap: wrap !important;
+      gap: 6px !important;
+      width: 100% !important;
+    }
+    .spec-live-input-box {
+      box-sizing: border-box !important;
+      max-width: 100% !important;
+      padding: 14px !important;
+    }
+    .spec-live-input-row {
+      flex-direction: column !important;
+      gap: 8px !important;
+    }
+    .btn-primary-add {
+      width: 100% !important;
+      justify-content: center !important;
+      padding: 10px 14px !important;
+      box-sizing: border-box !important;
+    }
+    .spec-quick-chips {
+      width: 100% !important;
+      gap: 5px !important;
+    }
+    .spec-quick-btn {
+      font-size: 11px !important;
+      padding: 4px 8px !important;
+      box-sizing: border-box !important;
+    }
+    .btn-jump-essay {
+      width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+      word-break: keep-all !important;
+      font-size: 12px !important;
+      padding: 10px 8px !important;
+    }
+    .target-companies-banner {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 8px !important;
+      padding: 12px 14px !important;
+      box-sizing: border-box !important;
+    }
+    .spec-panel-header {
+      flex-wrap: wrap !important;
+      gap: 8px !important;
+    }
+    .card-box {
+      overflow: hidden !important;
+      box-sizing: border-box !important;
+      max-width: 100% !important;
+    }
+
     .page-nav-floating {
       bottom: 12px;
       padding: 8px 12px;
       gap: 8px;
       width: calc(100% - 24px);
       max-width: 440px;
+      box-sizing: border-box;
     }
     .nav-btn {
       padding: 8px 10px;
@@ -3905,15 +4062,40 @@
     .sync-modal-box {
       width: 95vw;
       padding: 20px 16px;
+      box-sizing: border-box;
     }
     .grades-modal-card {
       width: 96vw;
       max-height: 92vh;
       padding: 16px 12px;
+      box-sizing: border-box;
     }
     .grades-filter-bar {
       flex-direction: column;
       align-items: stretch;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .page-nav-floating {
+      bottom: 10px !important;
+      padding: 6px 10px !important;
+      gap: 6px !important;
+      width: calc(100% - 16px) !important;
+      max-width: 360px !important;
+    }
+    .nav-btn {
+      padding: 7px 8px !important;
+      font-size: 11px !important;
+      flex: 1 !important;
+      justify-content: center !important;
+    }
+    .page-counter {
+      font-size: 11px !important;
+      gap: 4px !important;
+    }
+    .btn-company-filter {
+      flex: 1 1 100% !important;
     }
   }
 
@@ -4368,17 +4550,73 @@
 
     <!-- 최소화 상태 간결한 요약 칩 바 (동적 갱신) -->
     <div class="tools-collapsed-preview" id="toolsCollapsedPreview">
-      <span class="preview-mini-chip" style="color: #94A3B8;">등록된 장비/툴이 없습니다. [➕ 장비/툴 추가] 또는 [예시 불러오기]를 눌러보세요.</span>
+      <span class="preview-mini-chip">🔬 아르곤 글로브박스 &amp; 크림퍼</span>
+      <span class="preview-mini-chip">⚡ 배터리 충방전기 (WBCS/Maccor)</span>
+      <span class="preview-mini-chip">📊 Potentiostat (EIS / CV)</span>
+      <span class="preview-mini-chip">🧪 닥터블레이드 슬러리 코터</span>
+      <span class="preview-mini-chip">📈 OriginPro &amp; Python (데이터)</span>
+      <span class="preview-mini-chip">🧮 MS Excel VBA &amp; 매크로</span>
+      <span class="preview-mini-chip">📐 SEM / XRD 데이터 분석 기초</span>
+      <span class="preview-mini-chip">💡 안전 보호구 &amp; MSDS 관리</span>
     </div>
 
-    <!-- 전체 카드 그리드 (기본: 최소화/숨김, 내용 비워진 상태) -->
+    <!-- 전체 카드 그리드 (기본: 최소화/숨김, 8대 장비 탑재 상태) -->
     <section class="battery-tools-grid" id="batteryToolsGrid" style="display: none; margin-top: 14px;">
-      <div class="empty-tools-box" id="emptyToolsMsg">
-        <div style="font-size: 28px; margin-bottom: 6px;">🔬</div>
-        <p style="font-size: 14px; font-weight: 700; color: #1E293B;">등록된 배터리 실험/분석 장비 및 데이터 툴이 없습니다.</p>
-        <p style="font-size: 12px; color: #64748B; margin-top: 4px;">
-          상단의 <strong>[➕ 장비/툴 추가]</strong> 버튼을 눌러 내가 다룰 수 있는 장비(글로브박스, 충방전기, 코터 등)를 직접 추가해보세요.
-        </p>
+      <div class="b-tool-card card-box">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; width: 100%;">
+          <strong class="tool-name" contenteditable="true" style="outline: none; border-bottom: 1px dashed #CBD5E1; flex: 1;">🔬 아르곤 글로브박스 &amp; 크림퍼</strong>
+          <button class="btn-del-tool-card" type="button" onclick="removeBatteryToolCard(this)" title="이 장비 삭제">✕</button>
+        </div>
+        <span class="tool-desc" contenteditable="true" style="outline: none; margin-top: 8px; display: block; color: #475569; font-size: 12.5px; line-height: 1.5;">H₂O, O₂ &lt; 0.1ppm 제어 하에 CR2032 코인셀 반쪽/완전셀 조립</span>
+      </div>
+      <div class="b-tool-card card-box">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; width: 100%;">
+          <strong class="tool-name" contenteditable="true" style="outline: none; border-bottom: 1px dashed #CBD5E1; flex: 1;">⚡ 배터리 충방전기 (WBCS/Maccor)</strong>
+          <button class="btn-del-tool-card" type="button" onclick="removeBatteryToolCard(this)" title="이 장비 삭제">✕</button>
+        </div>
+        <span class="tool-desc" contenteditable="true" style="outline: none; margin-top: 8px; display: block; color: #475569; font-size: 12.5px; line-height: 1.5;">0.1C~5C 율속 특성, 100~500사이클 수명 평가 프로파일링</span>
+      </div>
+      <div class="b-tool-card card-box">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; width: 100%;">
+          <strong class="tool-name" contenteditable="true" style="outline: none; border-bottom: 1px dashed #CBD5E1; flex: 1;">📊 Potentiostat (EIS / CV)</strong>
+          <button class="btn-del-tool-card" type="button" onclick="removeBatteryToolCard(this)" title="이 장비 삭제">✕</button>
+        </div>
+        <span class="tool-desc" contenteditable="true" style="outline: none; margin-top: 8px; display: block; color: #475569; font-size: 12.5px; line-height: 1.5;">나이퀴스트 선도(EIS)를 통한 전하전달저항(Rct) 및 SEI 저항 규명</span>
+      </div>
+      <div class="b-tool-card card-box">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; width: 100%;">
+          <strong class="tool-name" contenteditable="true" style="outline: none; border-bottom: 1px dashed #CBD5E1; flex: 1;">🧪 닥터블레이드 슬러리 코터</strong>
+          <button class="btn-del-tool-card" type="button" onclick="removeBatteryToolCard(this)" title="이 장비 삭제">✕</button>
+        </div>
+        <span class="tool-desc" contenteditable="true" style="outline: none; margin-top: 8px; display: block; color: #475569; font-size: 12.5px; line-height: 1.5;">알루미늄/구리 집전체 위 슬러리 균일 도포 및 두께 제어</span>
+      </div>
+      <div class="b-tool-card card-box">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; width: 100%;">
+          <strong class="tool-name" contenteditable="true" style="outline: none; border-bottom: 1px dashed #CBD5E1; flex: 1;">📈 OriginPro &amp; Python (데이터)</strong>
+          <button class="btn-del-tool-card" type="button" onclick="removeBatteryToolCard(this)" title="이 장비 삭제">✕</button>
+        </div>
+        <span class="tool-desc" contenteditable="true" style="outline: none; margin-top: 8px; display: block; color: #475569; font-size: 12.5px; line-height: 1.5;">충방전 곡선 및 dQ/dV 미분 용량 피크 자동 추적 분석 스크립트</span>
+      </div>
+      <div class="b-tool-card card-box">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; width: 100%;">
+          <strong class="tool-name" contenteditable="true" style="outline: none; border-bottom: 1px dashed #CBD5E1; flex: 1;">🧮 MS Excel VBA &amp; 매크로</strong>
+          <button class="btn-del-tool-card" type="button" onclick="removeBatteryToolCard(this)" title="이 장비 삭제">✕</button>
+        </div>
+        <span class="tool-desc" contenteditable="true" style="outline: none; margin-top: 8px; display: block; color: #475569; font-size: 12.5px; line-height: 1.5;">수만 행의 배터리 사이클 원시 데이터 정제 및 이상치 필터링</span>
+      </div>
+      <div class="b-tool-card card-box">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; width: 100%;">
+          <strong class="tool-name" contenteditable="true" style="outline: none; border-bottom: 1px dashed #CBD5E1; flex: 1;">📐 SEM / XRD 데이터 분석 기초</strong>
+          <button class="btn-del-tool-card" type="button" onclick="removeBatteryToolCard(this)" title="이 장비 삭제">✕</button>
+        </div>
+        <span class="tool-desc" contenteditable="true" style="outline: none; margin-top: 8px; display: block; color: #475569; font-size: 12.5px; line-height: 1.5;">양극재 결정 구조(XRD) 및 입자 모폴로지(SEM) 분석 리포팅</span>
+      </div>
+      <div class="b-tool-card card-box">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; width: 100%;">
+          <strong class="tool-name" contenteditable="true" style="outline: none; border-bottom: 1px dashed #CBD5E1; flex: 1;">💡 안전 보호구 &amp; MSDS 관리</strong>
+          <button class="btn-del-tool-card" type="button" onclick="removeBatteryToolCard(this)" title="이 장비 삭제">✕</button>
+        </div>
+        <span class="tool-desc" contenteditable="true" style="outline: none; margin-top: 8px; display: block; color: #475569; font-size: 12.5px; line-height: 1.5;">위험물안전관리법 준수, 불산/유기용매 안전 폐액 처리 매뉴얼화</span>
       </div>
     </section>
 
@@ -4498,12 +4736,12 @@
           <div style="display: flex; align-items: center; gap: 8px;">
             <button class="btn-spec-action-ghost" type="button" onclick="loadSampleSpecMatcherData()" title="추천 모범 가이드 불러오기">✨ 예시 가이드 불러오기</button>
             <button class="btn-spec-action-ghost" type="button" onclick="clearSpecMatcherData()" title="스펙 전체 비우기">🧹 전체 비우기</button>
-            <span style="font-size: 11.5px; color: var(--muted); margin-left: 4px;" id="specKeywordsCount">등록된 스펙: 0개</span>
+            <span style="font-size: 11.5px; color: var(--muted); margin-left: 4px;" id="specKeywordsCount">등록된 스펙: 7개</span>
           </div>
         </div>
 
         <!-- 텍스트 입력창 + [➕ 내 스펙 추가] 버튼 그룹 -->
-        <div style="display: flex; gap: 8px; margin-top: 10px;">
+        <div class="spec-live-input-row" style="display: flex; gap: 8px; margin-top: 10px;">
           <input type="text" id="liveSpecInput" 
                  style="flex: 1; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; font-family: var(--font-body); outline: none;" 
                  placeholder="스펙/경험을 입력하세요 (예: 코인셀 100회 충방전 평가, 슬러리 분산 개선, 전공 4.13, 화공기사, 위험물 안전...)" 
@@ -4531,14 +4769,14 @@
       <!-- 내가 입력한 스펙 실시간 분석 요약 바 & 아래 화살표 버튼 (최소화 상태) -->
       <div class="matcher-toggle-bar" id="matcherToggleBar" onclick="toggleMatcherGridSection()" title="클릭하여 4대 자소서 분석 가이드 펼치기/접기">
         <div class="matcher-toggle-bar-info">
-          <div class="matcher-toggle-badge" id="matcherAnalysisStatusBadge">
+          <div class="matcher-toggle-badge active" id="matcherAnalysisStatusBadge">
             <span class="pulse-dot"></span>
-            <span id="matcherAnalysisStatusText">실시간 분석 대기 중</span>
+            <span id="matcherAnalysisStatusText">⚡ 분석 완료 (7개 스펙)</span>
           </div>
           <div class="matcher-toggle-title-group">
             <span class="matcher-toggle-title">📊 내가 입력한 스펙 실시간 분석 결과 (4대 자소서 항목별 가이드)</span>
             <span class="matcher-toggle-desc" id="matcherToggleSummary">
-              등록된 스펙을 기반으로 각 스펙별 실전 활용법 및 4대 문항 추천 문장이 실시간 정리되어 있습니다.
+              등록된 7개 핵심 스펙 분석 완료 (평균 적합도 96%) · 4대 자소서 문항별 최적 전략 및 추천 문장이 실시간 생성되었습니다.
             </span>
           </div>
         </div>
@@ -5246,7 +5484,7 @@
         <button class="btn-spec-action-ghost" type="button" onclick="clearProjectsData()" title="프로젝트 전체 비우기">
           🧹 전체 비우기
         </button>
-        <span style="font-size: 12px; color: var(--muted); margin-left: 6px;" id="projectsCountLabel">등록된 프로젝트: 0개</span>
+        <span style="font-size: 12px; color: var(--muted); margin-left: 6px;" id="projectsCountLabel">등록된 프로젝트: 3개</span>
       </div>
 
       <button id="btnToggleProjects" class="btn-collapse-toggle primary" type="button" onclick="toggleProjectsSection()" title="프로젝트 전체 보기">
@@ -5257,11 +5495,112 @@
 
     <!-- 프로젝트 최소화 상태일 때 보여주는 컴팩트 요약 바 -->
     <div class="projects-collapsed-preview" id="projectsCollapsedPreview">
-      <span style="font-size: 12.5px; color: #64748B;" id="projectsPreviewText">📁 현재 등록된 프로젝트가 없습니다. [➕ 새 프로젝트 추가]로 등록하거나 [✨ 예시 프로젝트 불러오기]를 눌러보세요.</span>
+      <span class="preview-mini-chip" style="background:#E0F2FE; color:#0369A1; font-weight:700;">🔋 CR2032 NCM622 코인셀 제작 및 수명·EIS 분석</span>
+      <span class="preview-mini-chip" style="background:#E0F2FE; color:#0369A1; font-weight:700;">⚡ 닥터블레이드 슬러리 코팅 결함 저감 &amp; 건조 프로파일</span>
+      <span class="preview-mini-chip" style="background:#E0F2FE; color:#0369A1; font-weight:700;">📊 Python 배터리 데이터 파싱 &amp; dQ/dV 분석 툴</span>
     </div>
 
     <!-- 프로젝트 상세 카드 리스트 (동적 관리) -->
-    <div class="projects-list" id="projectsList" style="display: none;"></div>
+    <div class="projects-list" id="projectsList" style="display: none;">
+      <article class="proj-card card-box" data-project-id="proj_sample_1">
+        <div class="proj-visual" style="background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:24px; text-align:center; color:#FFFFFF;">
+          <div style="width: 56px; height: 56px; border-radius: 50%; background: rgba(16, 185, 129, 0.2); border: 2px solid #10B981; display:flex; align-items:center; justify-content:center; font-size: 26px; margin-bottom: 10px;">
+            🔋
+          </div>
+          <span style="font-family: var(--font-title); font-size: 13px; font-weight:800; color: #6EE7B7;">CR2032 COIN CELL</span>
+          <span style="font-size: 11px; color: #94A3B8; margin-top:4px;">NCM622 / Li Half-cell</span>
+          <div style="margin-top: 12px; padding: 4px 10px; background: rgba(255,255,255,0.1); border-radius: 20px; font-size: 10.5px; color: #E2E8F0;">
+            편차 14.2% ➜ 2.8% 개선
+          </div>
+        </div>
+        <div class="proj-info-col">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+            <span class="proj-cat-tag" data-edit="proj1_cat">셀 제조 &amp; 전기화학 분석</span>
+            <button class="btn-del-proj-card" type="button" onclick="removeProjectCard(this)" title="이 프로젝트 삭제">✕ 프로젝트 삭제</button>
+          </div>
+          <h3 class="proj-title" data-edit="proj1_title">CR2032 NCM622 양극 코인셀 제작 및 C-rate별 사이클 수명·EIS 분석</h3>
+          <div class="proj-meta-chips">
+            <span class="proj-chip" data-edit="proj1_period">2025.03 - 2025.06 (4개월)</span>
+            <span class="proj-chip" data-edit="proj1_role">에너지공학종합설계</span>
+            <span class="proj-chip" data-edit="proj1_type">학부 캡스톤 프로젝트</span>
+          </div>
+          <ul class="proj-bullets">
+            <li data-edit="proj1_b1"><strong>슬러리 배합 &amp; 코팅:</strong> 하이니켈 NCM622 양극재 활물질/도전재(Super P)/바인더(PVDF)를 94:3:3 wt% 비율로 배합하고 닥터블레이드로 Al 집전체에 정밀 코팅.</li>
+            <li data-edit="proj1_b2"><strong>문제 해결 &amp; 건조 프로파일 설계:</strong> 10개 코인셀 제작 시 초기 용량 편차 14.2% 발생 원인을 바인더 편석과 분산 불량으로 규명하고, 유성 볼밀 믹싱(400rpm, 2h) 및 '60℃ 감압 ➜ 110℃ 진공' 2단계 건조 프로토콜을 독자 설계.</li>
+            <li data-edit="proj1_b3"><strong>글로브박스 조립 &amp; 분석:</strong> 아르곤 글로브박스(H₂O/O₂ &lt; 0.1ppm) 내에서 Li 메탈 대극 하프셀을 조립하고, WBCS3000 충방전기(0.1C 화성, 0.2C~2C 율속 평가) 및 Potentiostat EIS 나이퀴스트 선도를 정밀 분석.</li>
+          </ul>
+          <div class="proj-kpi-highlight" data-edit="proj1_kpi">
+            🎯 <strong>정량적 성과:</strong> 초기 방전 용량 편차 14.2% ➜ 2.8%로 축소 (80% 이상 개선) | 1C 고율 100사이클 수명 유지율 88.4% 달성 | 전하전달저항(Rct) 34% 감소 확인
+          </div>
+        </div>
+      </article>
+
+      <article class="proj-card card-box" data-project-id="proj_sample_2">
+        <div class="proj-visual" style="background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:24px; text-align:center; color:#FFFFFF;">
+          <div style="width: 56px; height: 56px; border-radius: 50%; background: rgba(2, 132, 199, 0.2); border: 2px solid #38BDF8; display:flex; align-items:center; justify-content:center; font-size: 26px; margin-bottom: 10px;">
+            ⚡
+          </div>
+          <span style="font-family: var(--font-title); font-size: 13px; font-weight:800; color: #7DD3FC;">SLURRY COATING</span>
+          <span style="font-size: 11px; color: #94A3B8; margin-top:4px;">Doctor Blade &amp; Dry Control</span>
+          <div style="margin-top: 12px; padding: 4px 10px; background: rgba(255,255,255,0.1); border-radius: 20px; font-size: 10.5px; color: #E2E8F0;">
+            두께 오차 ±1.5㎛ 정밀 제어
+          </div>
+        </div>
+        <div class="proj-info-col">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+            <span class="proj-cat-tag" data-edit="proj2_cat" style="color:#0284C7; background:#E0F2FE;">전극 공정 &amp; 슬러리 유변학</span>
+            <button class="btn-del-proj-card" type="button" onclick="removeProjectCard(this)" title="이 프로젝트 삭제">✕ 프로젝트 삭제</button>
+          </div>
+          <h3 class="proj-title" data-edit="proj2_title">닥터블레이드 전극 슬러리 코팅 결함 저감 및 건조 온도 프로파일 최적화</h3>
+          <div class="proj-meta-chips">
+            <span class="proj-chip" data-edit="proj2_period">2024.09 - 2024.12 (4개월)</span>
+            <span class="proj-chip" data-edit="proj2_role">전극 제조 공정 실습</span>
+            <span class="proj-chip" data-edit="proj2_type">학부 연구 과제</span>
+          </div>
+          <ul class="proj-bullets">
+            <li data-edit="proj2_b1"><strong>결함 분석:</strong> 알루미늄 집전체 코팅 시 발생하는 표면 핀홀과 바인더 상부 편석(Binder Migration)으로 인한 극판 박리 결함 메커니즘을 분석.</li>
+            <li data-edit="proj2_b2"><strong>탈포 &amp; 온도 구배 제어:</strong> 원심 탈포기(2,000rpm, 15min)를 도입하여 마이크로 기포를 제거하고, 급격한 용매 증발을 방지하는 3단계 건조로 온도 프로파일(40℃ 예열 ➜ 60℃ 용매 휘발 ➜ 100℃ 본건조)을 수립.</li>
+            <li data-edit="proj2_b3"><strong>밀착성 &amp; 두께 검증:</strong> 마이크로미터 9포인트 두께 측정 및 180도 테이프 박리 시험(Peel Test)을 통해 극판 접착 강도와 균일성을 검증.</li>
+          </ul>
+          <div class="proj-kpi-highlight" data-edit="proj2_kpi">
+            🎯 <strong>정량적 성과:</strong> 전극 두께 편차 ±6.0㎛ ➜ ±1.5㎛ 이내 정밀 제어 | 집전체-전극 바인더 접착력 45% 향상 | 롤투롤 연속 코팅 모사 시 전극 크랙 불량률 0% 달성
+          </div>
+        </div>
+      </article>
+
+      <article class="proj-card card-box" data-project-id="proj_sample_3">
+        <div class="proj-visual" style="background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:24px; text-align:center; color:#FFFFFF;">
+          <div style="width: 56px; height: 56px; border-radius: 50%; background: rgba(147, 51, 234, 0.2); border: 2px solid #C084FC; display:flex; align-items:center; justify-content:center; font-size: 26px; margin-bottom: 10px;">
+            📊
+          </div>
+          <span style="font-family: var(--font-title); font-size: 13px; font-weight:800; color: #D8B4FE;">PYTHON dQ/dV TOOL</span>
+          <span style="font-size: 11px; color: #94A3B8; margin-top:4px;">Automated Data Parsing</span>
+          <div style="margin-top: 12px; padding: 4px 10px; background: rgba(255,255,255,0.1); border-radius: 20px; font-size: 10.5px; color: #E2E8F0;">
+            분석 시간 80% 단축 (1h ➜ 10m)
+          </div>
+        </div>
+        <div class="proj-info-col">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+            <span class="proj-cat-tag" data-edit="proj3_cat" style="color:#7C3AED; background:#EDE9FE;">데이터 사이언스 &amp; 배터리 분석</span>
+            <button class="btn-del-proj-card" type="button" onclick="removeProjectCard(this)" title="이 프로젝트 삭제">✕ 프로젝트 삭제</button>
+          </div>
+          <h3 class="proj-title" data-edit="proj3_title">Python 기반 배터리 충방전 데이터 자동 파싱 및 dQ/dV 미분 피크 분석 툴 개발</h3>
+          <div class="proj-meta-chips">
+            <span class="proj-chip" data-edit="proj3_period">2025.09 - 2025.11 (3개월)</span>
+            <span class="proj-chip" data-edit="proj3_role">데이터 분석 툴 개발</span>
+            <span class="proj-chip" data-edit="proj3_type">개인 연구 프로젝트</span>
+          </div>
+          <ul class="proj-bullets">
+            <li data-edit="proj3_b1"><strong>대용량 로그 자동 파싱:</strong> WBCS 충방전기에서 생성되는 수십만 행의 원시 텍스트 데이터를 Python(Pandas)으로 자동 분류 및 전압별 리샘플링.</li>
+            <li data-edit="proj3_b2"><strong>노이즈 필터링 &amp; 미분 알고리즘:</strong> 미분 계산 시 발생하는 전압 노이즈를 억제하기 위해 Savitzky-Golay 스무딩 필터를 적용하고 dQ/dV 미분 곡선 자동 도출.</li>
+            <li data-edit="proj3_b3"><strong>상전이 피크 트래킹:</strong> 사이클 진행에 따른 고전압 상전이 피크 위치 이동 및 피크 면적 감소율을 수치화하여 배터리 조기 열화 원인을 신속 진단.</li>
+          </ul>
+          <div class="proj-kpi-highlight" data-edit="proj3_kpi">
+            🎯 <strong>정량적 성과:</strong> 충방전 데이터 파싱 속도 10배 향상 | dQ/dV 피크 검출 오차 0.5% 이내 | 수명 열화 메커니즘 리포트 자동 생성 완성
+          </div>
+        </div>
+      </article>
+    </div>
 
     <!-- 하단 입사 지원 연락처 배너 -->
     <section class="contact-banner card-box">
@@ -5333,8 +5672,16 @@
   const SPEC_CERT_KEY = 'ku_battery_spec_cert_data_v1';
   const SPEC_TOOLS_KEY = 'ku_battery_tools_data_v1';
   const SPEC_PROJECTS_KEY = 'ku_battery_projects_data_v1';
-  const REGISTERED_SPECS_KEY = 'ku_battery_user_registered_specs_v1';
-  let registeredUserSpecs = [];
+  const DEFAULT_CORE_SPECS = [
+    '미래에너지 ➜ 화공생명 소속변경 (융합 시너지)',
+    '전공 평점 4.13 (석차 3/9위 최상위 성적)',
+    '화공기사 (열역학, 반응공학, 공정물질열수지)',
+    '위험물산업기사 (인화성 유기용매 NMP 안전관리)',
+    'CR2032 코인셀 조립 및 용량 편차 14%->2.8% 개선',
+    '아르곤 글로브박스 0.1ppm 유지 및 2시간 퍼지 준수',
+    'Python 기반 배터리 dQ/dV 미분 피크 자동 파싱'
+  ];
+  let registeredUserSpecs = [...DEFAULT_CORE_SPECS];
 
   // 페이지 이동 함수
   function goToPage(index) {
@@ -5491,35 +5838,42 @@
       }
       // 장비/툴 스택 복원
       const savedTools = localStorage.getItem(SPEC_TOOLS_KEY);
-      if (savedTools) {
+      if (savedTools && savedTools.trim() !== '') {
         const toolsGrid = document.getElementById('batteryToolsGrid');
         if (toolsGrid) {
           toolsGrid.innerHTML = savedTools;
-          updateToolsCollapsedPreview();
         }
       }
+      updateToolsCollapsedPreview();
 
       // 배터리 프로젝트 리스트 복원
       const savedProjects = localStorage.getItem(SPEC_PROJECTS_KEY);
-      if (savedProjects !== null) {
+      if (savedProjects !== null && savedProjects.trim() !== '') {
         const projectsList = document.getElementById('projectsList');
         if (projectsList) {
           projectsList.innerHTML = savedProjects;
-          updateProjectsCollapsedPreview();
         }
-      } else {
-        updateProjectsCollapsedPreview();
       }
+      updateProjectsCollapsedPreview();
 
       // 등록된 스펙 칩 복원
       const savedSpecs = localStorage.getItem(REGISTERED_SPECS_KEY);
       if (savedSpecs) {
         try {
-          registeredUserSpecs = JSON.parse(savedSpecs);
-          renderUserSpecChips();
-          runIntelligentSpecAnalysis();
-        } catch(e){}
+          const parsed = JSON.parse(savedSpecs);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            registeredUserSpecs = parsed;
+          } else {
+            registeredUserSpecs = [...DEFAULT_CORE_SPECS];
+          }
+        } catch(e){
+          registeredUserSpecs = [...DEFAULT_CORE_SPECS];
+        }
+      } else {
+        registeredUserSpecs = [...DEFAULT_CORE_SPECS];
       }
+      renderUserSpecChips();
+      runIntelligentSpecAnalysis();
     } catch (err) {
       console.warn('데이터 로드 실패:', err);
     }
