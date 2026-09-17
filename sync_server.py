@@ -94,12 +94,13 @@ def run_git_sync(commit_msg="sync: auto deployment to GitHub Pages"):
         diff = subprocess.run(['git', 'diff', '--cached', '--quiet'], cwd=CURRENT_DIR)
         if diff.returncode != 0:
             subprocess.run(['git', 'commit', '-m', commit_msg], cwd=CURRENT_DIR, check=True)
-            res = subprocess.run(['git', 'push', 'origin', 'main'], cwd=CURRENT_DIR, text=True, capture_output=True)
+            git_env = {'GIT_TERMINAL_PROMPT': '0', **os.environ}
+            res = subprocess.run(['git', 'push', 'origin', 'main'], cwd=CURRENT_DIR, text=True, capture_output=True, env=git_env)
             if res.returncode == 0:
                 print(f"🚀 [GitHub 자동 배포 성공] {commit_msg}")
                 return True
             else:
-                print(f"[GitHub 푸시 실패] {res.stderr}", file=sys.stderr)
+                print(f"[GitHub 푸시 실패] {res.stderr.strip()}", file=sys.stderr)
                 return False
         else:
             print("[GitHub 동기화] 최신 커밋과 변경 사항이 없습니다 (이미 최신 반영됨).")
@@ -134,15 +135,16 @@ def auto_pull_worker():
     """모바일이나 GitHub API를 통해 원격에 커밋된 최신 변경사항을 맥북 로컬 파일로 자동 pull 동기화"""
     import time
     sync_script = os.path.join(CURRENT_DIR, 'sync_md_to_html.py')
+    git_env = {'GIT_TERMINAL_PROMPT': '0', **os.environ}
     while True:
-        time.sleep(30)
+        time.sleep(15)
         try:
-            subprocess.run(['git', 'fetch', 'origin', 'main'], cwd=CURRENT_DIR, capture_output=True)
-            res = subprocess.run(['git', 'rev-list', 'HEAD..origin/main', '--count'], cwd=CURRENT_DIR, capture_output=True, text=True)
+            subprocess.run(['git', 'fetch', 'origin', 'main'], cwd=CURRENT_DIR, capture_output=True, env=git_env)
+            res = subprocess.run(['git', 'rev-list', 'HEAD..origin/main', '--count'], cwd=CURRENT_DIR, capture_output=True, text=True, env=git_env)
             behind_count = int(res.stdout.strip() or '0')
             if behind_count > 0:
                 print(f"[원격 역전송 감지] 원격 저장소에 신규 커밋 {behind_count}개 발견 -> 맥북으로 git pull 실행")
-                pull_res = subprocess.run(['git', 'pull', 'origin', 'main'], cwd=CURRENT_DIR, capture_output=True, text=True)
+                pull_res = subprocess.run(['git', 'pull', 'origin', 'main'], cwd=CURRENT_DIR, capture_output=True, text=True, env=git_env)
                 if pull_res.returncode == 0:
                     print(f"✅ [맥북 역전송 완료] 모바일/원격 수정본이 맥북 파일로 완벽히 동기화되었습니다.")
                     subprocess.run([sys.executable, sync_script], cwd=CURRENT_DIR, capture_output=True)
