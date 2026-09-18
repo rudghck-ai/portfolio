@@ -5836,7 +5836,7 @@
         <button class="btn-spec-action-ghost" type="button" onclick="clearProjectsData()" title="프로젝트 전체 비우기">
           🧹 전체 비우기
         </button>
-        <span style="font-size: 12px; color: var(--muted); margin-left: 6px;" id="projectsCountLabel">등록된 프로젝트: 3개</span>
+        <span style="font-size: 12px; color: var(--muted); margin-left: 6px;" id="projectsCountLabel">등록된 프로젝트: 0개</span>
       </div>
 
       <button id="btnToggleProjects" class="btn-collapse-toggle" type="button" onclick="toggleProjectsSection()" title="프로젝트 접기/펼치기">
@@ -5847,111 +5847,21 @@
 
     <!-- 프로젝트 최소화 상태일 때 보여주는 컴팩트 요약 바 -->
     <div class="projects-collapsed-preview" id="projectsCollapsedPreview" style="display: none;">
-      <span class="preview-mini-chip" style="background:#E0F2FE; color:#0369A1; font-weight:700;">🔋 CR2032 NCM622 코인셀 제작 및 수명·EIS 분석</span>
-      <span class="preview-mini-chip" style="background:#E0F2FE; color:#0369A1; font-weight:700;">⚡ 닥터블레이드 슬러리 코팅 결함 저감 &amp; 건조 프로파일</span>
-      <span class="preview-mini-chip" style="background:#E0F2FE; color:#0369A1; font-weight:700;">📊 Python 배터리 데이터 파싱 &amp; dQ/dV 분석 툴</span>
+      <span class="preview-mini-chip" style="background:#F1F5F9; color:var(--muted); font-weight:700;">📁 현재 등록된 프로젝트가 없습니다.</span>
     </div>
 
-    <!-- 프로젝트 상세 카드 리스트 (기본: 3대 핵심 프로젝트 전면 표시) -->
+    <!-- 프로젝트 상세 카드 리스트 (초기 비어있는 상태) -->
     <div class="projects-list" id="projectsList" style="display: flex; flex-direction: column; gap: 20px;">
-      <article class="proj-card card-box" data-project-id="proj_sample_1">
-        <div class="proj-visual" style="background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:24px; text-align:center; color:#FFFFFF;">
-          <div style="width: 56px; height: 56px; border-radius: 50%; background: rgba(16, 185, 129, 0.2); border: 2px solid #10B981; display:flex; align-items:center; justify-content:center; font-size: 26px; margin-bottom: 10px;">
-            🔋
-          </div>
-          <span style="font-family: var(--font-title); font-size: 13px; font-weight:800; color: #6EE7B7;">CR2032 COIN CELL</span>
-          <span style="font-size: 11px; color: #94A3B8; margin-top:4px;">NCM622 / Li Half-cell</span>
-          <div style="margin-top: 12px; padding: 4px 10px; background: rgba(255,255,255,0.1); border-radius: 20px; font-size: 10.5px; color: #E2E8F0;">
-            편차 14.2% ➜ 2.8% 개선
-          </div>
-        </div>
-        <div class="proj-info-col">
-          <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
-            <span class="proj-cat-tag" data-edit="proj1_cat">셀 제조 &amp; 전기화학 분석</span>
-            <button class="btn-del-proj-card" type="button" onclick="removeProjectCard(this)" title="이 프로젝트 삭제">✕ 프로젝트 삭제</button>
-          </div>
-          <h3 class="proj-title" data-edit="proj1_title">CR2032 NCM622 양극 코인셀 제작 및 C-rate별 사이클 수명·EIS 분석</h3>
-          <div class="proj-meta-chips">
-            <span class="proj-chip" data-edit="proj1_period">2025.03 - 2025.06 (4개월)</span>
-            <span class="proj-chip" data-edit="proj1_role">에너지공학종합설계</span>
-            <span class="proj-chip" data-edit="proj1_type">학부 캡스톤 프로젝트</span>
-          </div>
-          <ul class="proj-bullets">
-            <li data-edit="proj1_b1"><strong>슬러리 배합 &amp; 코팅:</strong> 하이니켈 NCM622 양극재 활물질/도전재(Super P)/바인더(PVDF)를 94:3:3 wt% 비율로 배합하고 닥터블레이드로 Al 집전체에 정밀 코팅.</li>
-            <li data-edit="proj1_b2"><strong>문제 해결 &amp; 건조 프로파일 설계:</strong> 10개 코인셀 제작 시 초기 용량 편차 14.2% 발생 원인을 바인더 편석과 분산 불량으로 규명하고, 유성 볼밀 믹싱(400rpm, 2h) 및 '60℃ 감압 ➜ 110℃ 진공' 2단계 건조 프로토콜을 독자 설계.</li>
-            <li data-edit="proj1_b3"><strong>글로브박스 조립 &amp; 분석:</strong> 아르곤 글로브박스(H₂O/O₂ &lt; 0.1ppm) 내에서 Li 메탈 대극 하프셀을 조립하고, WBCS3000 충방전기(0.1C 화성, 0.2C~2C 율속 평가) 및 Potentiostat EIS 나이퀴스트 선도를 정밀 분석.</li>
-          </ul>
-          <div class="proj-kpi-highlight" data-edit="proj1_kpi">
-            🎯 <strong>정량적 성과:</strong> 초기 방전 용량 편차 14.2% ➜ 2.8%로 축소 (80% 이상 개선) | 1C 고율 100사이클 수명 유지율 88.4% 달성 | 전하전달저항(Rct) 34% 감소 확인
-          </div>
-        </div>
-      </article>
-
-      <article class="proj-card card-box" data-project-id="proj_sample_2">
-        <div class="proj-visual" style="background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:24px; text-align:center; color:#FFFFFF;">
-          <div style="width: 56px; height: 56px; border-radius: 50%; background: rgba(2, 132, 199, 0.2); border: 2px solid #38BDF8; display:flex; align-items:center; justify-content:center; font-size: 26px; margin-bottom: 10px;">
-            ⚡
-          </div>
-          <span style="font-family: var(--font-title); font-size: 13px; font-weight:800; color: #7DD3FC;">SLURRY COATING</span>
-          <span style="font-size: 11px; color: #94A3B8; margin-top:4px;">Doctor Blade &amp; Dry Control</span>
-          <div style="margin-top: 12px; padding: 4px 10px; background: rgba(255,255,255,0.1); border-radius: 20px; font-size: 10.5px; color: #E2E8F0;">
-            두께 오차 ±1.5㎛ 정밀 제어
-          </div>
-        </div>
-        <div class="proj-info-col">
-          <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
-            <span class="proj-cat-tag" data-edit="proj2_cat" style="color:#0284C7; background:#E0F2FE;">전극 공정 &amp; 슬러리 유변학</span>
-            <button class="btn-del-proj-card" type="button" onclick="removeProjectCard(this)" title="이 프로젝트 삭제">✕ 프로젝트 삭제</button>
-          </div>
-          <h3 class="proj-title" data-edit="proj2_title">닥터블레이드 전극 슬러리 코팅 결함 저감 및 건조 온도 프로파일 최적화</h3>
-          <div class="proj-meta-chips">
-            <span class="proj-chip" data-edit="proj2_period">2024.09 - 2024.12 (4개월)</span>
-            <span class="proj-chip" data-edit="proj2_role">전극 제조 공정 실습</span>
-            <span class="proj-chip" data-edit="proj2_type">학부 연구 과제</span>
-          </div>
-          <ul class="proj-bullets">
-            <li data-edit="proj2_b1"><strong>결함 분석:</strong> 알루미늄 집전체 코팅 시 발생하는 표면 핀홀과 바인더 상부 편석(Binder Migration)으로 인한 극판 박리 결함 메커니즘을 분석.</li>
-            <li data-edit="proj2_b2"><strong>탈포 &amp; 온도 구배 제어:</strong> 원심 탈포기(2,000rpm, 15min)를 도입하여 마이크로 기포를 제거하고, 급격한 용매 증발을 방지하는 3단계 건조로 온도 프로파일(40℃ 예열 ➜ 60℃ 용매 휘발 ➜ 100℃ 본건조)을 수립.</li>
-            <li data-edit="proj2_b3"><strong>밀착성 &amp; 두께 검증:</strong> 마이크로미터 9포인트 두께 측정 및 180도 테이프 박리 시험(Peel Test)을 통해 극판 접착 강도와 균일성을 검증.</li>
-          </ul>
-          <div class="proj-kpi-highlight" data-edit="proj2_kpi">
-            🎯 <strong>정량적 성과:</strong> 전극 두께 편차 ±6.0㎛ ➜ ±1.5㎛ 이내 정밀 제어 | 집전체-전극 바인더 접착력 45% 향상 | 롤투롤 연속 코팅 모사 시 전극 크랙 불량률 0% 달성
-          </div>
-        </div>
-      </article>
-
-      <article class="proj-card card-box" data-project-id="proj_sample_3">
-        <div class="proj-visual" style="background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:24px; text-align:center; color:#FFFFFF;">
-          <div style="width: 56px; height: 56px; border-radius: 50%; background: rgba(147, 51, 234, 0.2); border: 2px solid #C084FC; display:flex; align-items:center; justify-content:center; font-size: 26px; margin-bottom: 10px;">
-            📊
-          </div>
-          <span style="font-family: var(--font-title); font-size: 13px; font-weight:800; color: #D8B4FE;">PYTHON dQ/dV TOOL</span>
-          <span style="font-size: 11px; color: #94A3B8; margin-top:4px;">Automated Data Parsing</span>
-          <div style="margin-top: 12px; padding: 4px 10px; background: rgba(255,255,255,0.1); border-radius: 20px; font-size: 10.5px; color: #E2E8F0;">
-            분석 시간 80% 단축 (1h ➜ 10m)
-          </div>
-        </div>
-        <div class="proj-info-col">
-          <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
-            <span class="proj-cat-tag" data-edit="proj3_cat" style="color:#7C3AED; background:#EDE9FE;">데이터 사이언스 &amp; 배터리 분석</span>
-            <button class="btn-del-proj-card" type="button" onclick="removeProjectCard(this)" title="이 프로젝트 삭제">✕ 프로젝트 삭제</button>
-          </div>
-          <h3 class="proj-title" data-edit="proj3_title">Python 기반 배터리 충방전 데이터 자동 파싱 및 dQ/dV 미분 피크 분석 툴 개발</h3>
-          <div class="proj-meta-chips">
-            <span class="proj-chip" data-edit="proj3_period">2025.09 - 2025.11 (3개월)</span>
-            <span class="proj-chip" data-edit="proj3_role">데이터 분석 툴 개발</span>
-            <span class="proj-chip" data-edit="proj3_type">개인 연구 프로젝트</span>
-          </div>
-          <ul class="proj-bullets">
-            <li data-edit="proj3_b1"><strong>대용량 로그 자동 파싱:</strong> WBCS 충방전기에서 생성되는 수십만 행의 원시 텍스트 데이터를 Python(Pandas)으로 자동 분류 및 전압별 리샘플링.</li>
-            <li data-edit="proj3_b2"><strong>노이즈 필터링 &amp; 미분 알고리즘:</strong> 미분 계산 시 발생하는 전압 노이즈를 억제하기 위해 Savitzky-Golay 스무딩 필터를 적용하고 dQ/dV 미분 곡선 자동 도출.</li>
-            <li data-edit="proj3_b3"><strong>상전이 피크 트래킹:</strong> 사이클 진행에 따른 고전압 상전이 피크 위치 이동 및 피크 면적 감소율을 수치화하여 배터리 조기 열화 원인을 신속 진단.</li>
-          </ul>
-          <div class="proj-kpi-highlight" data-edit="proj3_kpi">
-            🎯 <strong>정량적 성과:</strong> 충방전 데이터 파싱 속도 10배 향상 | dQ/dV 피크 검출 오차 0.5% 이내 | 수명 열화 메커니즘 리포트 자동 생성 완성
-          </div>
-        </div>
-      </article>
+      <div class="projects-empty-hint" style="padding: 44px 20px; text-align: center; color: var(--muted); background: #F8FAFC; border: 1.5px dashed var(--border); border-radius: 16px;">
+        <div style="font-size: 34px; margin-bottom: 12px;">📋</div>
+        <strong style="font-size: 16px; color: var(--navy); display: block; margin-bottom: 6px;">현재 등록된 연구 및 프로젝트가 없습니다.</strong>
+        <p style="font-size: 13.5px; color: var(--muted); margin: 0 0 18px; line-height: 1.6;">
+          상단의 <strong>[➕ 새 프로젝트 추가]</strong> 버튼을 누르거나 <strong>portfolio.md</strong> 문서에 직접 내용을 작성하시면 실시간으로 반영됩니다.
+        </p>
+        <button class="btn-add-tool-item" type="button" onclick="addNewProjectCard()" style="margin: 0 auto;">
+          <span>➕ 첫 프로젝트 추가하기</span>
+        </button>
+      </div>
     </div>
 
     <!-- 하단 입사 지원 연락처 배너 -->
@@ -6110,7 +6020,7 @@
   const SPEC_LANG_KEY = 'ku_battery_spec_lang_data_v1';
   const SPEC_CERT_KEY = 'ku_battery_spec_cert_data_v1';
   const SPEC_TOOLS_KEY = 'ku_battery_tools_data_v1';
-  const SPEC_PROJECTS_KEY = 'ku_battery_projects_data_v1';
+  const SPEC_PROJECTS_KEY = 'ku_battery_projects_data_v2';
   const DEFAULT_CORE_SPECS = [
     '미래에너지 ➜ 화공생명 소속변경 (융합 시너지)',
     '전공 평점 4.13 (석차 3/9위 최상위 성적)',
@@ -7728,6 +7638,10 @@
     const list = document.getElementById('projectsList');
     if (!list) return;
 
+    // 빈 상태 안내 배너가 있으면 제거
+    const emptyHint = list.querySelector('.projects-empty-hint');
+    if (emptyHint) emptyHint.remove();
+
     // 카드가 추가되면 보이도록 펼침
     list.style.display = 'flex';
     const preview = document.getElementById('projectsCollapsedPreview');
@@ -7784,7 +7698,23 @@
     const titleEl = card.querySelector('.proj-title');
     const title = titleEl ? titleEl.textContent.trim() : '선택한 프로젝트';
 
+    const list = document.getElementById('projectsList');
     card.remove();
+
+    if (list && list.querySelectorAll('.proj-card').length === 0) {
+      list.innerHTML = `
+        <div class="projects-empty-hint" style="padding: 44px 20px; text-align: center; color: var(--muted); background: #F8FAFC; border: 1.5px dashed var(--border); border-radius: 16px;">
+          <div style="font-size: 34px; margin-bottom: 12px;">📋</div>
+          <strong style="font-size: 16px; color: var(--navy); display: block; margin-bottom: 6px;">현재 등록된 연구 및 프로젝트가 없습니다.</strong>
+          <p style="font-size: 13.5px; color: var(--muted); margin: 0 0 18px; line-height: 1.6;">
+            상단의 <strong>[➕ 새 프로젝트 추가]</strong> 버튼을 누르거나 <strong>portfolio.md</strong> 문서에 직접 내용을 작성하시면 실시간으로 반영됩니다.
+          </p>
+          <button class="btn-add-tool-item" type="button" onclick="addNewProjectCard()" style="margin: 0 auto;">
+            <span>➕ 첫 프로젝트 추가하기</span>
+          </button>
+        </div>`;
+    }
+
     updateProjectsCollapsedPreview();
     saveAllEdits();
     showToast(`'${title}' 프로젝트가 삭제되었습니다.`);
@@ -7817,7 +7747,18 @@
     const list = document.getElementById('projectsList');
     if (!list) return;
 
-    list.innerHTML = '';
+    list.innerHTML = `
+      <div class="projects-empty-hint" style="padding: 44px 20px; text-align: center; color: var(--muted); background: #F8FAFC; border: 1.5px dashed var(--border); border-radius: 16px;">
+        <div style="font-size: 34px; margin-bottom: 12px;">📋</div>
+        <strong style="font-size: 16px; color: var(--navy); display: block; margin-bottom: 6px;">현재 등록된 연구 및 프로젝트가 없습니다.</strong>
+        <p style="font-size: 13.5px; color: var(--muted); margin: 0 0 18px; line-height: 1.6;">
+          상단의 <strong>[➕ 새 프로젝트 추가]</strong> 버튼을 누르거나 <strong>portfolio.md</strong> 문서에 직접 내용을 작성하시면 실시간으로 반영됩니다.
+        </p>
+        <button class="btn-add-tool-item" type="button" onclick="addNewProjectCard()" style="margin: 0 auto;">
+          <span>➕ 첫 프로젝트 추가하기</span>
+        </button>
+      </div>`;
+    localStorage.removeItem(SPEC_PROJECTS_KEY);
     updateProjectsCollapsedPreview();
     saveAllEdits();
     showToast('프로젝트 목록이 전체 초기화되었습니다.');
