@@ -4081,6 +4081,9 @@
       width: 95vw;
       padding: 20px 16px;
       box-sizing: border-box;
+      max-height: 90vh !important;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch !important;
     }
     .grades-modal-card {
       width: 96vw;
@@ -4091,6 +4094,109 @@
     .grades-filter-bar {
       flex-direction: column;
       align-items: stretch;
+    }
+
+    /* ═══ 추가 모바일 최적화 (텍스트 잘림 및 버튼 탈출 방지) ═══ */
+    .hero-catchphrase {
+      font-size: 19px !important;
+      line-height: 1.45 !important;
+      word-break: keep-all !important;
+    }
+    .hero-name {
+      font-size: 26px !important;
+    }
+    .hero-role-pill {
+      font-size: 12px !important;
+      word-break: keep-all !important;
+      text-align: center !important;
+    }
+    .spec-master-toolbar {
+      flex-direction: column !important;
+      align-items: stretch !important;
+      padding: 12px 14px !important;
+      gap: 10px !important;
+    }
+    .spec-master-toolbar > div:first-child {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 4px !important;
+    }
+    .spec-master-toolbar > div:last-child {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 8px !important;
+      width: 100% !important;
+    }
+    .spec-master-toolbar .btn-spec-action-ghost {
+      width: 100% !important;
+      justify-content: center !important;
+      text-align: center !important;
+      padding: 8px 6px !important;
+      font-size: 11.5px !important;
+      box-sizing: border-box !important;
+    }
+    .grades-header-row {
+      flex-direction: column !important;
+      align-items: stretch !important;
+      gap: 12px !important;
+    }
+    .grades-header-row > div:last-child {
+      width: 100% !important;
+      flex-direction: column !important;
+      align-items: stretch !important;
+    }
+    .btn-open-grades {
+      width: 100% !important;
+      justify-content: center !important;
+      box-sizing: border-box !important;
+      text-align: center !important;
+    }
+    .spec-row-item {
+      padding: 10px 12px !important;
+      gap: 8px !important;
+    }
+    .spec-item-left {
+      min-width: 0 !important;
+      flex: 1 1 auto !important;
+    }
+    .spec-item-name {
+      word-break: keep-all !important;
+      font-size: 13.5px !important;
+    }
+    .spec-item-sub {
+      word-break: keep-all !important;
+      font-size: 11px !important;
+    }
+    .spec-item-badge {
+      white-space: nowrap !important;
+      flex-shrink: 0 !important;
+    }
+    .guide-banner-header {
+      flex-wrap: wrap !important;
+      gap: 8px !important;
+    }
+    .guide-insert-btn {
+      align-self: stretch !important;
+      width: 100% !important;
+      text-align: center !important;
+      padding: 6px 10px !important;
+      box-sizing: border-box !important;
+    }
+    .page-jump-footer {
+      flex-direction: column !important;
+      gap: 10px !important;
+      align-items: stretch !important;
+      margin-top: 24px !important;
+      padding-top: 18px !important;
+    }
+    .btn-page-jump {
+      width: 100% !important;
+      justify-content: center !important;
+      text-align: center !important;
+      padding: 12px 14px !important;
+      font-size: 13px !important;
+      box-sizing: border-box !important;
+      margin-left: 0 !important;
     }
   }
 
@@ -4107,6 +4213,7 @@
       font-size: 11px !important;
       flex: 1 !important;
       justify-content: center !important;
+      white-space: nowrap !important;
     }
     .page-counter {
       font-size: 11px !important;
@@ -4114,6 +4221,35 @@
     }
     .btn-company-filter {
       flex: 1 1 100% !important;
+    }
+    .grades-kpi-grid {
+      gap: 8px !important;
+    }
+    .grades-kpi-item {
+      padding: 10px 6px !important;
+    }
+    .grades-kpi-val {
+      font-size: 20px !important;
+    }
+    .grades-kpi-label {
+      font-size: 10.5px !important;
+    }
+    .grades-kpi-sub {
+      font-size: 10px !important;
+    }
+    .star-timeline-box {
+      grid-template-columns: 1fr !important;
+      gap: 10px !important;
+      padding: 14px !important;
+    }
+    .mobile-mode-tabs {
+      flex-direction: column !important;
+      gap: 6px !important;
+    }
+    .mobile-mode-tab-btn {
+      width: 100% !important;
+      padding: 8px 10px !important;
+      font-size: 12px !important;
     }
   }
 
@@ -4131,6 +4267,7 @@
     align-items: center;
     justify-content: center;
     padding: 20px;
+    box-sizing: border-box;
     backdrop-filter: blur(28px);
     -webkit-backdrop-filter: blur(28px);
     transition: opacity 0.35s ease, visibility 0.35s ease;
@@ -4157,16 +4294,16 @@
     to { opacity: 1; transform: scale(1) translateY(0); }
   }
   .lock-icon-badge {
-    width: 68px;
-    height: 68px;
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
     background: linear-gradient(135deg, rgba(2, 132, 199, 0.25), rgba(13, 148, 136, 0.3));
     border: 2px solid #0284C7;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 32px;
-    margin: 0 auto 16px;
+    font-size: 30px;
+    margin: 0 auto 14px;
     box-shadow: 0 0 25px rgba(2, 132, 199, 0.35);
   }
   .lock-title {
@@ -4175,6 +4312,7 @@
     font-weight: 800;
     margin: 0 0 8px;
     letter-spacing: -0.02em;
+    word-break: keep-all;
   }
   .lock-desc {
     color: #94A3B8;
@@ -4188,22 +4326,36 @@
   }
   .pin-input-group {
     display: flex;
-    gap: 8px;
+    gap: 10px;
     margin-bottom: 12px;
   }
   .pin-input-group input {
     flex: 1;
+    min-width: 0;
+    box-sizing: border-box;
     background: #0B0F19;
     border: 1.5px solid #334155;
     border-radius: 12px;
     padding: 13px 16px;
     color: #FFFFFF;
-    font-size: 20px;
-    letter-spacing: 8px;
     text-align: center;
     outline: none;
     font-family: inherit;
     transition: all 0.2s;
+  }
+  /* 플레이스홀더 표시 시에는 letter-spacing 없이 깔끔한 기본 폰트로 출력하여 절대 잘리지 않음 */
+  .pin-input-group input:placeholder-shown {
+    letter-spacing: normal !important;
+    font-size: 14.5px !important;
+    color: #64748B;
+  }
+  /* 비밀번호 입력 중일 때만 큼직한 간격의 보안 점(Dot)/숫자로 출력 */
+  .pin-input-group input:not(:placeholder-shown) {
+    font-size: 22px !important;
+    font-weight: 800 !important;
+    letter-spacing: 8px !important;
+    color: #38BDF8;
+    text-indent: 8px;
   }
   .pin-input-group input:focus {
     border-color: #0284C7;
@@ -4221,6 +4373,9 @@
     cursor: pointer;
     transition: all 0.2s;
     white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .btn-unlock-submit:hover {
     filter: brightness(1.1);
@@ -4232,6 +4387,7 @@
     margin-bottom: 12px;
     font-weight: 600;
     animation: lockShake 0.4s ease;
+    word-break: keep-all;
   }
   @keyframes lockShake {
     0%, 100% { transform: translateX(0); }
@@ -4240,16 +4396,22 @@
   }
   .lock-remember-row {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     gap: 8px;
     font-size: 12px;
-    color: #64748B;
+    color: #94A3B8;
     cursor: pointer;
     user-select: none;
+    text-align: left;
+    line-height: 1.45;
+    word-break: keep-all;
   }
   .lock-remember-row input {
+    margin-top: 2px;
+    flex-shrink: 0;
     cursor: pointer;
+    accent-color: #0284C7;
   }
   .btn-lock-toggle {
     background: rgba(239, 68, 68, 0.08) !important;
@@ -4258,6 +4420,53 @@
   }
   .btn-lock-toggle:hover {
     background: rgba(239, 68, 68, 0.16) !important;
+  }
+
+  /* 모바일 잠금 모달 전용 반응형 스타일 */
+  @media (max-width: 600px) {
+    .portfolio-lock-overlay {
+      padding: 16px !important;
+    }
+    .lock-modal-card {
+      padding: 26px 18px 22px !important;
+      border-radius: 20px !important;
+      max-width: 100% !important;
+    }
+    .lock-icon-badge {
+      width: 52px !important;
+      height: 52px !important;
+      font-size: 24px !important;
+      margin-bottom: 12px !important;
+    }
+    .lock-title {
+      font-size: 18px !important;
+    }
+    .lock-desc {
+      font-size: 13px !important;
+      margin-bottom: 14px !important;
+    }
+    .pin-input-group {
+      flex-direction: column !important;
+      gap: 10px !important;
+      margin-bottom: 12px !important;
+    }
+    .pin-input-group input {
+      width: 100% !important;
+      height: 48px !important;
+      padding: 12px 14px !important;
+      box-sizing: border-box !important;
+    }
+    .btn-unlock-submit {
+      width: 100% !important;
+      height: 46px !important;
+      padding: 0 !important;
+      font-size: 15px !important;
+      border-radius: 12px !important;
+    }
+    .lock-remember-row {
+      font-size: 11.5px !important;
+      justify-content: flex-start !important;
+    }
   }
 </style>
 </head>
@@ -4282,7 +4491,7 @@
           type="password" 
           id="pinInput" 
           maxlength="8" 
-          placeholder="비밀번호 입력" 
+          placeholder="비밀번호 4자리" 
           autocomplete="off" 
           inputmode="numeric"
           pattern="[0-9]*"
