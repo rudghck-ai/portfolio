@@ -4850,6 +4850,7 @@
           autocomplete="off" 
           inputmode="numeric"
           pattern="[0-9]*"
+          oninput="if(this.value.trim()==='1116'){handleUnlockSubmit();}"
           autofocus
           required
         >
@@ -6302,8 +6303,10 @@
     const overlay = document.getElementById('portfolioLockOverlay');
     if (isAuth && overlay) {
       overlay.classList.add('unlocked');
+      overlay.style.display = 'none';
     } else if (overlay) {
       overlay.classList.remove('unlocked');
+      overlay.style.display = 'flex';
       setTimeout(() => {
         const pin = document.getElementById('pinInput');
         if (pin) pin.focus();
@@ -6329,7 +6332,10 @@
       } else {
         sessionStorage.setItem(LOCK_AUTH_KEY, 'unlocked');
       }
-      if (overlay) overlay.classList.add('unlocked');
+      if (overlay) {
+        overlay.classList.add('unlocked');
+        setTimeout(() => { overlay.style.display = 'none'; }, 380);
+      }
       if (typeof showToast === 'function') {
         showToast('🔓 보안 인증 완료! 환영합니다.');
       }
@@ -6757,7 +6763,7 @@
       },
       professional: {
         subhead: "[안주하지 않는 도전: 물질·열수지와 반응공학으로 완성한 배터리 전문성]",
-        body: `<p>배터리 엔지니어에게 필요한 최고의 무기는 <strong>'에너지 시스템 전체를 조망하는 거시적 안목'</strong>과 <strong>'공정 내부의 물질전달 및 전기화학 반응을 정밀 제어하는 미시적 해석력'</strong>의 결합입니다. 1~2학년 시절 미래에너지공학과에서 에너지변환공학, 전기화학 원론을 우수한 성적으로 이수하며 배터리의 사이클 수명과 셀 밸런싱의 기본 메커니즘을 확립했습니다. 그러나 연구실에서 전극 극판을 직접 제조해보며, 바인더 결착성과 전극 계면 저항의 본질적 해결은 유기화학 및 화학공학열역학의 깊이 없이는 불가능함을 절감했습니다.</p><p>이에 학문적 깊이를 더하고자 화학공학열역학, 반응공학, 물질전달 등 하드코어 화공 전공들을 7개 학기에 걸쳐 선제 집중 이수하면서도 <strong>전공 평점 4.13 / 4.50 (전체 평점 4.09)</strong>을 달성하여 탁월한 학업 몰입도를 입증하였고, 2026-2학기 <strong>화공생명에너지공학부 소속변경</strong>을 성공적으로 완수했습니다.</p>`<p>나아가 <strong>화공기사</strong>와 <strong>위험물산업기사</strong>를 연이어 취득하여 단위조작 물질·에너지 수지 계산 및 NMP 등 인화성 유기용매 취급 안전성을 공인받았습니다. 거시적 에너지 패러다임과 정밀 화학공학 공정 제어력을 겸비한 융합형 엔지니어로서, 복합 불량 원인을 신속 진단하겠습니다.</p>`
+        body: `<p>배터리 엔지니어에게 필요한 최고의 무기는 <strong>'에너지 시스템 전체를 조망하는 거시적 안목'</strong>과 <strong>'공정 내부의 물질전달 및 전기화학 반응을 정밀 제어하는 미시적 해석력'</strong>의 결합입니다. 1~2학년 시절 미래에너지공학과에서 에너지변환공학, 전기화학 원론을 우수한 성적으로 이수하며 배터리의 사이클 수명과 셀 밸런싱의 기본 메커니즘을 확립했습니다. 그러나 연구실에서 전극 극판을 직접 제조해보며, 바인더 결착성과 전극 계면 저항의 본질적 해결은 유기화학 및 화학공학열역학의 깊이 없이는 불가능함을 절감했습니다.</p><p>이에 학문적 깊이를 더하고자 화학공학열역학, 반응공학, 물질전달 등 하드코어 화공 전공들을 7개 학기에 걸쳐 선제 집중 이수하면서도 <strong>전공 평점 4.13 / 4.50 (전체 평점 4.09)</strong>을 달성하여 탁월한 학업 몰입도를 입증하였고, 2026-2학기 <strong>화공생명에너지공학부 소속변경</strong>을 성공적으로 완수했습니다.</p><p>나아가 <strong>화공기사</strong>와 <strong>위험물산업기사</strong>를 연이어 취득하여 단위조작 물질·에너지 수지 계산 및 NMP 등 인화성 유기용매 취급 안전성을 공인받았습니다. 거시적 에너지 패러다임과 정밀 화학공학 공정 제어력을 겸비한 융합형 엔지니어로서, 복합 불량 원인을 신속 진단하겠습니다.</p>`
       },
       star_kpi: {
         subhead: "[전공 평점 4.13과 화공기사·위험물산업기사 취득으로 증명한 직무 완결성]",
