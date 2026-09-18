@@ -1320,15 +1320,24 @@
      8. 실시간 편집 모드 (contenteditable) 스타일링
      ══════════════════════════════════════════════════════════ */
   .editable-active [contenteditable="true"] {
-    outline: 2px dashed #3B82F6 !important;
+    outline: 2px dashed #2563EB !important;
     outline-offset: 3px;
-    background-color: rgba(239, 246, 255, 0.7) !important;
-    border-radius: 4px;
+    background-color: rgba(239, 246, 255, 0.88) !important;
+    color: #0F172A !important;
+    border-radius: 6px;
     cursor: text;
+    transition: background-color 0.15s ease, outline 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
+  }
+  .editable-active [contenteditable="true"]:hover {
+    outline: 2px dashed #1D4ED8 !important;
+    background-color: #DBEAFE !important;
   }
   .editable-active [contenteditable="true"]:focus {
     outline: 2px solid #1D4ED8 !important;
-    background-color: #EFF6FF !important;
+    outline-offset: 3px;
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+    box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.22), inset 0 1px 2px rgba(0, 0, 0, 0.05) !important;
   }
   .edit-mode-badge {
     display: none;
@@ -3037,6 +3046,33 @@
     color: #FFFFFF;
   }
 
+  .projects-empty-hint {
+    padding: 44px 20px;
+    text-align: center;
+    color: var(--muted);
+    background: #F8FAFC;
+    border: 1.5px dashed var(--border);
+    border-radius: 16px;
+    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  }
+  .spec-insights-empty-hint {
+    background: #F8FAFC;
+    border: 1.5px dashed #CBD5E1;
+    color: #64748B;
+    border-radius: 12px;
+    padding: 24px 20px;
+    text-align: center;
+    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  }
+  .grades-course-name {
+    color: var(--navy);
+  }
+  .grades-course-code {
+    color: #64748B;
+    font-family: monospace;
+    font-size: 11.5px;
+  }
+
   /* ══════════════════════════════════════════════════════════
      13. 다크모드 / 라이트모드 테마 시스템 (Dark Mode CSS)
      ══════════════════════════════════════════════════════════ */
@@ -3719,12 +3755,335 @@
     border-color: rgba(251, 191, 36, 0.35) !important;
   }
 
-  body.dark-mode .grade-search-input,
-  body.dark-mode .live-spec-input-custom {
-    background: #0B0F17;
-    border-color: #334155;
-    color: #F8FAFC;
+  /* ═══ 다크모드 실시간 편집 모드 (ContentEditable) 완벽 고대비 최적화 ═══ */
+  body.dark-mode.editable-active [contenteditable="true"] {
+    outline: 2px dashed #38BDF8 !important;
+    outline-offset: 3px;
+    background-color: rgba(15, 23, 42, 0.94) !important;
+    color: #FFFFFF !important;
+    border-radius: 6px;
+    cursor: text;
+    box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.2) !important;
+    transition: background-color 0.15s ease, outline 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
   }
+  body.dark-mode.editable-active [contenteditable="true"]:hover {
+    outline: 2px dashed #7DD3FC !important;
+    background-color: #1E293B !important;
+    color: #FFFFFF !important;
+  }
+  body.dark-mode.editable-active [contenteditable="true"]:focus,
+  body.dark-mode [contenteditable="true"]:focus {
+    outline: 2px solid #38BDF8 !important;
+    outline-offset: 3px;
+    background-color: #070B12 !important;
+    color: #FFFFFF !important;
+    caret-color: #38BDF8 !important;
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.35), inset 0 2px 6px rgba(0, 0, 0, 0.7) !important;
+  }
+  body.dark-mode.editable-active [contenteditable="true"] *:not(.company-badge):not(.badge-grade):not(.badge-cat):not(.tag-battery-core) {
+    color: inherit !important;
+  }
+  body.dark-mode [contenteditable="true"] {
+    caret-color: #38BDF8 !important;
+  }
+
+  /* ═══ 다크모드 폼 컨트롤 & 전체 인풋 시인성 강화 ═══ */
+  body.dark-mode input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="submit"]):not([type="button"]),
+  body.dark-mode textarea,
+  body.dark-mode select {
+    background-color: #0B0F17 !important;
+    border: 1.5px solid #334155 !important;
+    color: #FFFFFF !important;
+    caret-color: #38BDF8 !important;
+  }
+  body.dark-mode input:focus,
+  body.dark-mode textarea:focus,
+  body.dark-mode select:focus {
+    background-color: #0F172A !important;
+    border-color: #38BDF8 !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25) !important;
+    outline: none !important;
+  }
+  body.dark-mode input::placeholder,
+  body.dark-mode textarea::placeholder {
+    color: #64748B !important;
+    opacity: 1 !important;
+  }
+
+  /* 2페이지 AI 첨삭 도우미 드로어 & 프롬프트 입력창 */
+  body.dark-mode .ai-drawer {
+    background: #151D2A !important;
+    border-color: #263345 !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+  }
+  body.dark-mode .ai-drawer-header {
+    border-bottom-color: #263345 !important;
+  }
+  body.dark-mode .ai-drawer-title {
+    color: #F8FAFC !important;
+  }
+  body.dark-mode .ai-presets-label {
+    color: #93C5FD !important;
+  }
+  body.dark-mode .ai-chip {
+    background: #1E293B !important;
+    border-color: #334155 !important;
+    color: #CBD5E1 !important;
+  }
+  body.dark-mode .ai-chip:hover {
+    background: #0284C7 !important;
+    border-color: #0284C7 !important;
+    color: #FFFFFF !important;
+  }
+  body.dark-mode .ai-close-btn {
+    color: #94A3B8 !important;
+  }
+  body.dark-mode .ai-close-btn:hover {
+    background: #1E293B !important;
+    color: #FFFFFF !important;
+  }
+  body.dark-mode .ai-prompt-input {
+    background: #0B0F17 !important;
+    border: 1.5px solid #334155 !important;
+    color: #FFFFFF !important;
+  }
+  body.dark-mode .ai-prompt-input::placeholder {
+    color: #64748B !important;
+  }
+  body.dark-mode .ai-prompt-input:focus {
+    background: #0F172A !important;
+    border-color: #38BDF8 !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25) !important;
+  }
+  body.dark-mode .ai-result-preview-box {
+    background: #0B0F17 !important;
+    border-color: #38BDF8 !important;
+  }
+  body.dark-mode .ai-preview-meta {
+    border-bottom-color: #1E293B !important;
+  }
+  body.dark-mode .ai-preview-status {
+    color: #38BDF8 !important;
+  }
+  body.dark-mode .ai-char-counter {
+    background: #1E293B !important;
+    color: #94A3B8 !important;
+  }
+  body.dark-mode .ai-preview-subhead {
+    color: #34D399 !important;
+    border-bottom-color: #263345 !important;
+  }
+  body.dark-mode .ai-preview-content {
+    color: #E2E8F0 !important;
+  }
+  body.dark-mode .btn-ai-revert,
+  body.dark-mode .btn-ai-copy {
+    background: #1E293B !important;
+    border-color: #334155 !important;
+    color: #CBD5E1 !important;
+  }
+  body.dark-mode .btn-ai-revert:hover,
+  body.dark-mode .btn-ai-copy:hover {
+    background: #334155 !important;
+    color: #FFFFFF !important;
+  }
+
+  /* 성적표 모달 검색창 및 테이블 */
+  body.dark-mode .grades-search-box input,
+  body.dark-mode #gradesSearchInput {
+    background: #0B0F17 !important;
+    border: 1.5px solid #334155 !important;
+    color: #FFFFFF !important;
+  }
+  body.dark-mode .grades-search-box input::placeholder,
+  body.dark-mode #gradesSearchInput::placeholder {
+    color: #64748B !important;
+  }
+  body.dark-mode .grades-search-box input:focus,
+  body.dark-mode #gradesSearchInput:focus {
+    background: #0F172A !important;
+    border-color: #34D399 !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.25) !important;
+  }
+  body.dark-mode .grades-table strong,
+  body.dark-mode .grades-course-name {
+    color: #F8FAFC !important;
+  }
+  body.dark-mode .grades-course-code {
+    color: #94A3B8 !important;
+  }
+  body.dark-mode .grades-modal-close-btn {
+    background: #1E293B !important;
+    color: #CBD5E1 !important;
+    border: 1px solid #334155 !important;
+  }
+  body.dark-mode .grades-modal-close-btn:hover {
+    background: #334155 !important;
+    color: #FFFFFF !important;
+  }
+  body.dark-mode #gradesModalBody p,
+  body.dark-mode .grades-empty-title {
+    color: #E2E8F0 !important;
+  }
+  body.dark-mode .grades-footer-summary {
+    color: #94A3B8 !important;
+  }
+  body.dark-mode .grades-footer-summary strong {
+    color: #34D399 !important;
+  }
+
+  /* 빈 상태 안내 박스 다크모드 (프로젝트 & 스펙 가이드) */
+  body.dark-mode .projects-empty-hint {
+    background: #111827 !important;
+    border-color: #263345 !important;
+    color: #94A3B8 !important;
+  }
+  body.dark-mode .projects-empty-hint strong {
+    color: #F8FAFC !important;
+  }
+  body.dark-mode .spec-insights-empty-hint,
+  body.dark-mode [id="userSpecInsightsContainer"] > div[style*="background"] {
+    background: #111827 !important;
+    border-color: #263345 !important;
+    color: #94A3B8 !important;
+  }
+  body.dark-mode [id="userSpecInsightsContainer"] strong {
+    color: #F8FAFC !important;
+  }
+
+  /* 배터리 툴 & 자격증/어학 */
+  body.dark-mode .b-tool-card {
+    background: #151D2A !important;
+    border-color: #263345 !important;
+  }
+  body.dark-mode .b-tool-card:hover {
+    border-color: #38BDF8 !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+  }
+  body.dark-mode .b-tool-card .tool-name {
+    color: #F8FAFC !important;
+    border-bottom-color: #334155 !important;
+  }
+  body.dark-mode .b-tool-card .tool-desc {
+    color: #94A3B8 !important;
+  }
+  body.dark-mode .spec-item-name {
+    color: #F8FAFC !important;
+    border-bottom-color: #334155 !important;
+  }
+  body.dark-mode .spec-item-sub {
+    color: #94A3B8 !important;
+  }
+
+  /* 2페이지 자소서 세부 요소 */
+  body.dark-mode .essay-q-badge {
+    background: #1E293B !important;
+    color: #94A3B8 !important;
+  }
+  body.dark-mode .essay-question {
+    color: #F8FAFC !important;
+  }
+  body.dark-mode .essay-subhead {
+    color: #34D399 !important;
+    border-bottom-color: #263345 !important;
+  }
+  body.dark-mode .essay-body {
+    color: #CBD5E1 !important;
+  }
+  body.dark-mode .star-timeline-box {
+    background: #111827 !important;
+    border-color: #263345 !important;
+  }
+  body.dark-mode .star-step-label {
+    color: #34D399 !important;
+  }
+  body.dark-mode .star-step-desc {
+    color: #CBD5E1 !important;
+  }
+
+  /* 3페이지 프로젝트 카드 */
+  body.dark-mode .proj-card {
+    background: #151D2A !important;
+    border-color: #263345 !important;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35) !important;
+  }
+  body.dark-mode .proj-card:hover {
+    border-color: #38BDF8 !important;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5) !important;
+  }
+  body.dark-mode .proj-cat-tag {
+    background: rgba(56, 189, 248, 0.15) !important;
+    border-color: rgba(56, 189, 248, 0.3) !important;
+    color: #38BDF8 !important;
+  }
+  body.dark-mode .proj-title {
+    color: #F8FAFC !important;
+  }
+  body.dark-mode .proj-chip {
+    background: #1E293B !important;
+    border-color: #334155 !important;
+    color: #94A3B8 !important;
+  }
+  body.dark-mode .proj-bullets li {
+    color: #CBD5E1 !important;
+  }
+  body.dark-mode .proj-kpi-highlight {
+    background: rgba(16, 185, 129, 0.12) !important;
+    border-left-color: #10B981 !important;
+    color: #6EE7B7 !important;
+  }
+
+  /* 동기화 모달 */
+  body.dark-mode .sync-action-btn {
+    background: #1E293B !important;
+    border-color: #334155 !important;
+  }
+  body.dark-mode .sync-action-btn:hover {
+    background: #243044 !important;
+    border-color: #38BDF8 !important;
+  }
+  body.dark-mode .sync-action-btn h4 {
+    color: #F8FAFC !important;
+  }
+  body.dark-mode .sync-action-btn p {
+    color: #94A3B8 !important;
+  }
+  body.dark-mode .sync-tip-box {
+    background: #111827 !important;
+    border-color: #263345 !important;
+    color: #CBD5E1 !important;
+  }
+  body.dark-mode .sync-tip-box code {
+    background: #0B0F17 !important;
+    color: #38BDF8 !important;
+    border: 1px solid #334155 !important;
+  }
+  body.dark-mode .sync-status-card {
+    background: #1E293B !important;
+    border-color: #334155 !important;
+    color: #F8FAFC !important;
+  }
+
+  /* 편집 모드 토글 버튼 */
+  body.dark-mode .btn-edit-toggle {
+    background: rgba(245, 158, 11, 0.18) !important;
+    color: #FCD34D !important;
+    border-color: rgba(245, 158, 11, 0.4) !important;
+  }
+  body.dark-mode .btn-edit-toggle:hover {
+    background: rgba(245, 158, 11, 0.28) !important;
+    color: #FDE68A !important;
+  }
+  body.dark-mode .btn-edit-toggle.is-editing {
+    background: #DC2626 !important;
+    color: #FFFFFF !important;
+    border-color: #EF4444 !important;
+  }
+
+  /* 기타 버튼 & 프리뷰 칩 */
   body.dark-mode .company-preset-tab {
     background: #1E293B;
     border-color: #334155;
@@ -3739,16 +4098,6 @@
     border-color: #334155;
     color: #E2E8F0;
   }
-  body.dark-mode .proj-chip {
-    background: #1E293B;
-    border-color: #334155;
-    color: #94A3B8;
-  }
-  body.dark-mode .proj-kpi-highlight {
-    background: rgba(16, 185, 129, 0.1);
-    border-left-color: #10B981;
-    color: #6EE7B7;
-  }
   body.dark-mode .btn-page-jump.prev {
     background: #1E293B;
     color: #E2E8F0;
@@ -3761,19 +4110,8 @@
     background: #1E293B;
     border-color: #334155;
   }
-  body.dark-mode .sync-status-card {
-    background: #1E293B;
-    border-color: #334155;
-  }
-  body.dark-mode .sync-action-btn {
-    background: #151D2A;
-    border-color: #263345;
-  }
-  body.dark-mode .sync-action-btn:hover {
-    background: #1E293B;
-  }
 
-  /* 다크모드 추가: 하드코딩된 인라인 배경/텍스트색 강제 재정의 */
+  /* 하드코딩된 인라인 배경/텍스트색 강제 재정의 */
   body.dark-mode .target-companies-banner {
     background: #1E293B !important;
     border-color: #334155 !important;
@@ -3795,15 +4133,32 @@
   body.dark-mode .spec-master-toolbar [style*="color: var(--navy)"] {
     color: #F8FAFC !important;
   }
-  body.dark-mode .comp-collapsed-preview[style*="display: none"],
-  body.dark-mode .grades-collapsed-preview[style*="display: none"],
-  body.dark-mode .spec-panel-collapsed-preview[style*="display: none"] {
-    /* 접혀있는 상태는 표시 안 함 */
-  }
   body.dark-mode .grades-collapsed-preview[style*="background: #F8FAFC"],
   body.dark-mode .grades-collapsed-preview[style*="background:#F8FAFC"] {
     background: #1E293B !important;
     border-color: #334155 !important;
+  }
+
+  /* 드래그 텍스트 선택 색상 (고대비 가독성) */
+  body.dark-mode ::selection {
+    background-color: rgba(56, 189, 248, 0.38) !important;
+    color: #FFFFFF !important;
+  }
+
+  /* 다크모드 스크롤바 최적화 */
+  body.dark-mode ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  body.dark-mode ::-webkit-scrollbar-track {
+    background: #0B0F17;
+  }
+  body.dark-mode ::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 4px;
+  }
+  body.dark-mode ::-webkit-scrollbar-thumb:hover {
+    background: #475569;
   }
 
   /* ══════════════════════════════════════════════════════════
@@ -5852,7 +6207,7 @@
 
     <!-- 프로젝트 상세 카드 리스트 (초기 비어있는 상태) -->
     <div class="projects-list" id="projectsList" style="display: flex; flex-direction: column; gap: 20px;">
-      <div class="projects-empty-hint" style="padding: 44px 20px; text-align: center; color: var(--muted); background: #F8FAFC; border: 1.5px dashed var(--border); border-radius: 16px;">
+      <div class="projects-empty-hint">
         <div style="font-size: 34px; margin-bottom: 12px;">📋</div>
         <strong style="font-size: 16px; color: var(--navy); display: block; margin-bottom: 6px;">현재 등록된 연구 및 프로젝트가 없습니다.</strong>
         <p style="font-size: 13.5px; color: var(--muted); margin: 0 0 18px; line-height: 1.6;">
@@ -6892,9 +7247,9 @@
         html += `
           <tr>
             <td>${catBadge}</td>
-            <td style="color: #64748B; font-family: monospace; font-size: 11.5px;">${c.code}</td>
+            <td class="grades-course-code">${c.code}</td>
             <td>
-              <strong style="color: #0F172A;">${c.name}</strong>
+              <strong class="grades-course-name">${c.name}</strong>
               ${coreTag}
             </td>
             <td style="text-align: center; font-weight: 700;">${c.credit}</td>
@@ -6912,10 +7267,10 @@
 
     if (totalMatchedCourses === 0) {
       html = `
-        <div style="text-align: center; padding: 60px 20px; color: #64748B;">
+        <div style="text-align: center; padding: 60px 20px; color: var(--muted);">
           <div style="font-size: 36px; margin-bottom: 12px;">🔍</div>
-          <p style="font-size: 15px; font-weight: 700; color: #1E293B;">조건에 일치하는 교과목이 없습니다.</p>
-          <p style="font-size: 13px; margin-top: 4px;">검색어 또는 필터 조건을 변경해보세요.</p>
+          <p class="grades-empty-title" style="font-size: 15px; font-weight: 700;">조건에 일치하는 교과목이 없습니다.</p>
+          <p style="font-size: 13px; margin-top: 4px; color: var(--muted);">검색어 또는 필터 조건을 변경해보세요.</p>
         </div>
       `;
     }
@@ -7069,10 +7424,10 @@
 
     if (registeredUserSpecs.length === 0) {
       container.innerHTML = `
-        <div style="background: #F8FAFC; border: 1.5px dashed #CBD5E1; border-radius: 12px; padding: 24px 20px; text-align: center; color: #64748B;">
+        <div class="spec-insights-empty-hint">
           <span style="font-size: 24px; display: block; margin-bottom: 6px;">💡</span>
           <strong style="color: var(--navy); font-size: 14px;">현재 등록된 스펙이 없습니다.</strong><br>
-          <span style="font-size: 12.5px; color: #64748B; margin-top: 4px; display: inline-block;">
+          <span style="font-size: 12.5px; color: var(--muted); margin-top: 4px; display: inline-block;">
             위 입력창에서 나의 스펙/경험을 적고 <strong>[➕ 내 스펙 추가]</strong>를 누르거나 <strong>[✨ 예시 가이드 불러오기]</strong>를 눌러보세요.<br>
             각 스펙별로 <strong>"이 스펙은 [문항 X]에서 ~~식으로 활용하면 좋다"</strong>는 1:1 맞춤형 가이드 카드가 이곳에 깔끔하게 정리됩니다.
           </span>
@@ -7703,7 +8058,7 @@
 
     if (list && list.querySelectorAll('.proj-card').length === 0) {
       list.innerHTML = `
-        <div class="projects-empty-hint" style="padding: 44px 20px; text-align: center; color: var(--muted); background: #F8FAFC; border: 1.5px dashed var(--border); border-radius: 16px;">
+        <div class="projects-empty-hint">
           <div style="font-size: 34px; margin-bottom: 12px;">📋</div>
           <strong style="font-size: 16px; color: var(--navy); display: block; margin-bottom: 6px;">현재 등록된 연구 및 프로젝트가 없습니다.</strong>
           <p style="font-size: 13.5px; color: var(--muted); margin: 0 0 18px; line-height: 1.6;">
@@ -7748,7 +8103,7 @@
     if (!list) return;
 
     list.innerHTML = `
-      <div class="projects-empty-hint" style="padding: 44px 20px; text-align: center; color: var(--muted); background: #F8FAFC; border: 1.5px dashed var(--border); border-radius: 16px;">
+      <div class="projects-empty-hint">
         <div style="font-size: 34px; margin-bottom: 12px;">📋</div>
         <strong style="font-size: 16px; color: var(--navy); display: block; margin-bottom: 6px;">현재 등록된 연구 및 프로젝트가 없습니다.</strong>
         <p style="font-size: 13.5px; color: var(--muted); margin: 0 0 18px; line-height: 1.6;">
@@ -8313,6 +8668,32 @@ ${projectsMd}---
         btnArrow.style.removeProperty('color');
       }
     }
+
+    // 빈 프로젝트 안내 박스
+    document.querySelectorAll('.projects-empty-hint').forEach(el => {
+      if (isDark) {
+        el.style.setProperty('background', '#111827', 'important');
+        el.style.setProperty('border-color', '#263345', 'important');
+        el.style.setProperty('color', '#94A3B8', 'important');
+      } else {
+        el.style.removeProperty('background');
+        el.style.removeProperty('border-color');
+        el.style.removeProperty('color');
+      }
+    });
+
+    // 빈 스펙 맞춤 분석 박스
+    document.querySelectorAll('.spec-insights-empty-hint').forEach(el => {
+      if (isDark) {
+        el.style.setProperty('background', '#111827', 'important');
+        el.style.setProperty('border-color', '#263345', 'important');
+        el.style.setProperty('color', '#94A3B8', 'important');
+      } else {
+        el.style.removeProperty('background');
+        el.style.removeProperty('border-color');
+        el.style.removeProperty('color');
+      }
+    });
   }
 
 
@@ -8991,10 +9372,10 @@ ${projectsMd}---
 
     card.innerHTML = `
       <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; width: 100%;">
-        <strong class="tool-name" contenteditable="true" style="outline: none; border-bottom: 1px dashed #CBD5E1; flex: 1;">${defaultName}</strong>
+        <strong class="tool-name" contenteditable="true" style="outline: none; border-bottom: 1px dashed var(--border); flex: 1; color: var(--navy);">${defaultName}</strong>
         <button class="btn-del-tool-card" type="button" onclick="removeBatteryToolCard(this)" title="이 장비 삭제">✕</button>
       </div>
-      <span class="tool-desc" contenteditable="true" style="outline: none; margin-top: 8px; display: block; color: #475569; font-size: 12.5px; line-height: 1.5;">${defaultDesc}</span>
+      <span class="tool-desc" contenteditable="true" style="outline: none; margin-top: 8px; display: block; color: var(--slate); font-size: 12.5px; line-height: 1.5;">${defaultDesc}</span>
     `;
 
     grid.appendChild(card);
@@ -9166,7 +9547,7 @@ ${projectsMd}---
         <span>🔄</span>
         <span>HTML ➜ portfolio.md 실시간 동기화 센터</span>
       </div>
-      <button class="grades-modal-close-btn" type="button" onclick="closeSyncModal()" aria-label="닫기" style="background:#F1F5F9; color:#475569;">✕</button>
+      <button class="grades-modal-close-btn" type="button" onclick="closeSyncModal()" aria-label="닫기">✕</button>
     </div>
 
     <!-- 현재 동기화 상태 카드 -->
